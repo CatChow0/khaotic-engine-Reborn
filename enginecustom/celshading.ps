@@ -83,5 +83,7 @@ float4 CelShadingPixelShader(PixelInputType input) : SV_TARGET
     // Calculate the final color by combining the texture color with the light intensity and diffuse color.
     finalColor = textureColor * diffuseColor * lightIntensity;
 
-    return finalColor;
+    //return finalColor;
+    
+    return float4(normal * 0.5f + 0.5f, 1.0f);
 }

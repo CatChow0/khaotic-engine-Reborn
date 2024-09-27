@@ -33,7 +33,7 @@ PixelInputType CelShadingVertexShader(VertexInputType input)
     output.position = mul(output.position, projectionMatrix);
 
     // Pass the normal to the pixel shader
-    output.normal = mul((float3x3)worldMatrix, input.normal);
+    output.normal = normalize(mul((float3x3) worldMatrix, input.normal));
 
     // Pass the world position to the pixel shader
     output.worldPos = worldPosition.xyz;

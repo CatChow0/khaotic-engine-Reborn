@@ -94,6 +94,8 @@ private:
 	bool RenderRefractionToTexture();
 	bool RenderReflectionToTexture();
 
+	ID3D11ShaderResourceView* LoadTexture(const std::string* filename);
+
 private :
 
 	// ------------------------------------- //

@@ -221,7 +221,6 @@ void ModelClass::RenderBuffers(ID3D11DeviceContext* deviceContext)
 	return;
 }
 
-
 bool ModelClass::LoadTextures(ID3D11Device* device, ID3D11DeviceContext* deviceContext, vector<string> textureFile)
 {
 	Logger::Get().Log("Loading textures", __FILE__, __LINE__);
@@ -243,7 +242,9 @@ bool ModelClass::LoadTextures(ID3D11Device* device, ID3D11DeviceContext* deviceC
 
 	Logger::Get().Log("Textures loaded", __FILE__, __LINE__);
 
-	return true;
+
+	// return the texture object array.
+	return m_Textures;
 }
 
 void ModelClass::ReleaseTextures()
