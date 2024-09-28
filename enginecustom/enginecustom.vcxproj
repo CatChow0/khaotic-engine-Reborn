@@ -290,6 +290,7 @@
     <Keyword>Win32Proj</Keyword>
     <ProjectGuid>{92cf56c4-76bb-40d4-8fe5-36c15f5f127a}</ProjectGuid>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>KhaoticCore</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
