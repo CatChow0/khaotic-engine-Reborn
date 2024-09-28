@@ -5,7 +5,6 @@ ModelClass::ModelClass()
 {
 	m_vertexBuffer = 0;
 	m_indexBuffer = 0;
-	m_Textures = 0;
 	m_model = 0;
 }
 
@@ -19,16 +18,14 @@ ModelClass::~ModelClass()
 {
 }
 
-bool ModelClass::Initialize(ID3D11Device* device, ID3D11DeviceContext* deviceContext, char* modelFilename, vector<string> filename)
-{
-	Logger::Get().Log("Initializing model class", __FILE__, __LINE__, Logger::LogLevel::Initialize);
+bool ModelClass::Initialize(ID3D11Device* device, ID3D11DeviceContext* deviceContext, char* modelFilename, std::vector<ID3D11ShaderResourceView*> textures) {
+	Logger::Get().Log("Initializing model class with preloaded textures", __FILE__, __LINE__, Logger::LogLevel::Initialize);
 
 	bool result;
 
 	// Load in the model data.
 	result = LoadModel(modelFilename);
-	if (!result)
-	{
+	if (!result) {
 		Logger::Get().Log("Failed to load model data", __FILE__, __LINE__, Logger::LogLevel::Error);
 		return false;
 	}
@@ -38,20 +35,14 @@ bool ModelClass::Initialize(ID3D11Device* device, ID3D11DeviceContext* deviceCon
 
 	// Initialize the vertex and index buffers.
 	result = InitializeBuffers(device);
-	if (!result)
-	{
+	if (!result) {
 		Logger::Get().Log("Failed to initialize buffers", __FILE__, __LINE__, Logger::LogLevel::Error);
 		return false;
 	}
-	// Load the textures for this model.
-	result = LoadTextures(device, deviceContext, filename);
-	if (!result)
-	{
-		Logger::Get().Log("Failed to load textures", __FILE__, __LINE__, Logger::LogLevel::Error);
-		return false;
-	}
 
-	Logger::Get().Log("Model class initialized", __FILE__, __LINE__, Logger::LogLevel::Initialize);
+	m_Textures = textures;
+
+	Logger::Get().Log("Model class initialized with preloaded textures", __FILE__, __LINE__, Logger::LogLevel::Initialize);
 
 	return true;
 }
@@ -88,7 +79,7 @@ int ModelClass::GetIndexCount()
 
 ID3D11ShaderResourceView* ModelClass::GetTexture(int index)
 {
-	return m_Textures[index].GetTexture();
+	return m_Textures[index];
 }
 
 
@@ -221,52 +212,23 @@ void ModelClass::RenderBuffers(ID3D11DeviceContext* deviceContext)
 	return;
 }
 
-
-bool ModelClass::LoadTextures(ID3D11Device* device, ID3D11DeviceContext* deviceContext, vector<string> textureFile)
-{
-	Logger::Get().Log("Loading textures", __FILE__, __LINE__);
-
-	bool result;
-
-	// Create and initialize the texture object array.
-	m_Textures = new TextureClass[textureFile.size()];
-
-	for (int i = 0; i < textureFile.size(); i++)
-	{
-		result = m_Textures[i].Initialize(device, deviceContext, textureFile[i]);
-		if (!result)
-		{
-			Logger::Get().Log("Failed to initialize texture", __FILE__, __LINE__, Logger::LogLevel::Error);
-			return false;
-		}
-	}
-
-	Logger::Get().Log("Textures loaded", __FILE__, __LINE__);
-
-	return true;
-}
-
 void ModelClass::ReleaseTextures()
 {
 	Logger::Get().Log("Releasing textures", __FILE__, __LINE__);
 
 	// Release the texture object array.
-	if (m_Textures)
+	for (auto& texture : m_Textures)
 	{
-		m_Textures[0].Shutdown();
-		m_Textures[1].Shutdown();
-		m_Textures[2].Shutdown();
-		m_Textures[3].Shutdown();
-		m_Textures[4].Shutdown();
-		m_Textures[5].Shutdown();
-
-		delete[] m_Textures;
-		m_Textures = 0;
+		if (texture)
+		{
+			texture->Release();
+			texture = nullptr;
+		}
 	}
 
-	Logger::Get().Log("Textures released", __FILE__, __LINE__);
+	m_Textures.clear();
 
-	return;
+	Logger::Get().Log("Textures released", __FILE__, __LINE__);
 }
 
 bool ModelClass::LoadModel(char* filename)
@@ -590,23 +552,39 @@ void ModelClass::ReleaseModel()
 
 bool ModelClass::ChangeTexture(ID3D11Device* device, ID3D11DeviceContext* deviceContext, std::wstring filename, int index)
 {
-	bool result;
+	Logger::Get().Log("Changing texture", __FILE__, __LINE__, Logger::LogLevel::Initialize);
 
-	// convert wstring to string
-	std::string str(filename.begin(), filename.end());
+	HRESULT result;
+	ID3D11ShaderResourceView* newTexture = nullptr;
 
-	// Release the old texture object.
-	m_Textures[index].Shutdown();
-
-	// Initialize the new texture object.
-	result = m_Textures[index].Initialize(device, deviceContext, str);
-	if (!result)
+	// Load the new texture using WICTextureLoader.
+	result = DirectX::CreateWICTextureFromFile(device, deviceContext, filename.c_str(), nullptr, &newTexture);
+	if (FAILED(result))
 	{
-		Logger::Get().Log("Failed to initialize texture", __FILE__, __LINE__, Logger::LogLevel::Error);
+		Logger::Get().Log("Failed to load new texture", __FILE__, __LINE__, Logger::LogLevel::Error);
 		return false;
 	}
 
-	Logger::Get().Log("Texture changed", __FILE__, __LINE__, Logger::LogLevel::Debug);
+	// Release the old texture if it exists.
+	if (index >= 0 && index < m_Textures.size() && m_Textures[index])
+	{
+		m_Textures[index]->Release();
+		m_Textures[index] = nullptr;
+	}
 
+	// Assign the new texture to the specified index.
+	if (index >= 0 && index < m_Textures.size())
+	{
+		m_Textures[index] = newTexture;
+	}
+	else
+	{
+		// If the index is out of range, log an error and release the new texture.
+		Logger::Get().Log("Texture index out of range", __FILE__, __LINE__, Logger::LogLevel::Error);
+		newTexture->Release();
+		return false;
+	}
+
+	Logger::Get().Log("Texture changed successfully", __FILE__, __LINE__, Logger::LogLevel::Initialize);
 	return true;
 }

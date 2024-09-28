@@ -30,6 +30,8 @@
 #include "reflectionshaderclass.h"
 #include "physics.h"
 
+#include <WICTextureLoader.h>
+
 
 /////////////
 // GLOBALS //
@@ -84,6 +86,8 @@ public:
 	void SetShouldQuit(bool shouldQuit) { m_ShouldQuit = shouldQuit; };
 
 	void SetCelShading(bool enable) { m_enableCelShading = enable; };
+
+	std::vector<ID3D11ShaderResourceView*> textures;
 
 private:
 	bool Render(float, float, float, float, float);

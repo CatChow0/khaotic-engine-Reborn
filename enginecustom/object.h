@@ -1,5 +1,7 @@
 #pragma once
 #include "modelclass.h"
+#include <WICTextureLoader.h>
+#include <SimpleMath.h>
 
 class Object : public ModelClass
 {
@@ -50,6 +52,10 @@ public:
 	int SetId(int id);
 	int GetId() const;
 
+	bool LoadTexture(ID3D11Device* device, ID3D11DeviceContext* deviceContext, const std::wstring& filename);
+
+	ID3D11ShaderResourceView* GetTexture() const;
+
 public :
 	bool m_demoSpinning = false;
 	XMVECTOR m_previousPosition;
@@ -68,5 +74,5 @@ private:
 	bool m_isGrounded;
 
 	std::string m_name;
-
+	ID3D11ShaderResourceView* m_Texture;
 };

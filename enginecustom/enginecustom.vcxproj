@@ -22,6 +22,11 @@
     <ClCompile Include="alphamapshaderclass.cpp" />
     <ClCompile Include="applicationclass.cpp" />
     <ClCompile Include="bitmapclass.cpp" />
+    <ClCompile Include="C:\Users\Bacon\Downloads\DirectXTK-main\DirectXTK-main\Src\DDSTextureLoader.cpp" />
+    <ClCompile Include="C:\Users\Bacon\Downloads\DirectXTK-main\DirectXTK-main\Src\DirectXHelpers.cpp" />
+    <ClCompile Include="C:\Users\Bacon\Downloads\DirectXTK-main\DirectXTK-main\Src\pch.cpp" />
+    <ClCompile Include="C:\Users\Bacon\Downloads\DirectXTK-main\DirectXTK-main\Src\SimpleMath.cpp" />
+    <ClCompile Include="C:\Users\Bacon\Downloads\DirectXTK-main\DirectXTK-main\Src\WICTextureLoader.cpp" />
     <ClCompile Include="Cameraclass.cpp" />
     <ClCompile Include="CelShadingShader.cpp" />
     <ClCompile Include="Colorshaderclass.cpp" />
@@ -70,6 +75,11 @@
     <ClInclude Include="alphamapshaderclass.h" />
     <ClInclude Include="applicationclass.h" />
     <ClInclude Include="bitmapclass.h" />
+    <ClInclude Include="C:\Users\Bacon\Downloads\DirectXTK-main\DirectXTK-main\Src\CMO.h" />
+    <ClInclude Include="C:\Users\Bacon\Downloads\DirectXTK-main\DirectXTK-main\Src\DDS.h" />
+    <ClInclude Include="C:\Users\Bacon\Downloads\DirectXTK-main\DirectXTK-main\Src\LoaderHelpers.h" />
+    <ClInclude Include="C:\Users\Bacon\Downloads\DirectXTK-main\DirectXTK-main\Src\pch.h" />
+    <ClInclude Include="C:\Users\Bacon\Downloads\DirectXTK-main\DirectXTK-main\Src\PlatformHelpers.h" />
     <ClInclude Include="Cameraclass.h" />
     <ClInclude Include="CelShadingShader.h" />
     <ClInclude Include="Colorshaderclass.h" />
@@ -360,7 +370,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)enginecustom\include\backends;$(SolutionDir)enginecustom\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)enginecustom\include\backends;$(SolutionDir)enginecustom\include\Inc;$(SolutionDir)enginecustom\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -377,7 +387,7 @@
       <PreprocessorDefinitions>NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)enginecustom\include\backends;$(SolutionDir)enginecustom\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)enginecustom\include\backends;$(SolutionDir)enginecustom\include\Inc;$(SolutionDir)enginecustom\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

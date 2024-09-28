@@ -13,6 +13,7 @@
 #include <sstream>
 #include <vector>
 #include <string>
+#include <WICTextureLoader.h>
 using namespace DirectX;
 using namespace std;
 
@@ -82,7 +83,8 @@ public:
 	ModelClass(const ModelClass&);
 	~ModelClass();
 
-	bool Initialize(ID3D11Device*, ID3D11DeviceContext*, char*, vector<string>);
+	bool Initialize(ID3D11Device*, ID3D11DeviceContext*, char*, std::vector<ID3D11ShaderResourceView*>);
+
 	void Shutdown();
 	void Render(ID3D11DeviceContext*);
 
@@ -108,7 +110,7 @@ private:
 private:
 	ID3D11Buffer* m_vertexBuffer, * m_indexBuffer;
 	int m_vertexCount, m_indexCount;
-	TextureClass* m_Textures;
+	std::vector<ID3D11ShaderResourceView*> m_Textures;
 	ModelType* m_model;
 };
 

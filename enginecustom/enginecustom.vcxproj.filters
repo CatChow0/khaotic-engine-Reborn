@@ -31,6 +31,12 @@
     <Filter Include="Assets">
       <UniqueIdentifier>{2978535b-193d-4876-83be-1c3c4470db62}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers sources\DirectX  Tool Kit">
+      <UniqueIdentifier>{3bfbc604-3b39-4e49-bee2-b942fc5dce8c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\DirectX Tool Kit">
+      <UniqueIdentifier>{d710c862-b37d-4ad5-aa92-2456f9745881}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -173,6 +179,21 @@
     </ClCompile>
     <ClCompile Include="CelShadingShader.cpp">
       <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Bacon\Downloads\DirectXTK-main\DirectXTK-main\Src\DDSTextureLoader.cpp">
+      <Filter>Fichiers sources\DirectX  Tool Kit</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Bacon\Downloads\DirectXTK-main\DirectXTK-main\Src\DirectXHelpers.cpp">
+      <Filter>Fichiers sources\DirectX  Tool Kit</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Bacon\Downloads\DirectXTK-main\DirectXTK-main\Src\pch.cpp">
+      <Filter>Fichiers sources\DirectX  Tool Kit</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Bacon\Downloads\DirectXTK-main\DirectXTK-main\Src\SimpleMath.cpp">
+      <Filter>Fichiers sources\DirectX  Tool Kit</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Bacon\Downloads\DirectXTK-main\DirectXTK-main\Src\WICTextureLoader.cpp">
+      <Filter>Fichiers sources\DirectX  Tool Kit</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -322,6 +343,21 @@
     </ClInclude>
     <ClInclude Include="CelShadingShader.h">
       <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Bacon\Downloads\DirectXTK-main\DirectXTK-main\Src\PlatformHelpers.h">
+      <Filter>Fichiers d%27en-tête\DirectX Tool Kit</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Bacon\Downloads\DirectXTK-main\DirectXTK-main\Src\pch.h">
+      <Filter>Fichiers d%27en-tête\DirectX Tool Kit</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Bacon\Downloads\DirectXTK-main\DirectXTK-main\Src\LoaderHelpers.h">
+      <Filter>Fichiers d%27en-tête\DirectX Tool Kit</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Bacon\Downloads\DirectXTK-main\DirectXTK-main\Src\DDS.h">
+      <Filter>Fichiers d%27en-tête\DirectX Tool Kit</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Bacon\Downloads\DirectXTK-main\DirectXTK-main\Src\CMO.h">
+      <Filter>Fichiers d%27en-tête\DirectX Tool Kit</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

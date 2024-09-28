@@ -51,7 +51,6 @@ bool ApplicationClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 		char spriteFilename[128];
 		char fpsString[32];
 		bool result;
-		std::vector<std::string> Filename;
 
 		m_screenWidth = screenWidth;
 		m_screenHeight = screenHeight;
@@ -174,18 +173,32 @@ bool ApplicationClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 		// Set the file name of the model.
 		strcpy_s(modelFilename, "cube.txt");
 
-		// Set the file name of the textures.
-		Filename.push_back("stone01.tga");
-		Filename.push_back("normal01.tga");
-		Filename.push_back("spec02.tga");
-		Filename.push_back("alpha01.tga");
-		Filename.push_back("light01.tga");
-		Filename.push_back("moss01.tga");
+		// Charger les textures
+		std::vector<std::wstring> textureFilenames = {
+			L"stone01.tga",
+			L"normal01.tga",
+			L"spec02.tga",
+			L"alpha01.tga",
+			L"light01.tga",
+			L"moss01.tga"
+		};
+
+		for (const auto& textureFilename : textureFilenames)
+		{
+			ID3D11ShaderResourceView* texture = nullptr;
+			result = DirectX::CreateWICTextureFromFile(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), textureFilename.c_str(), nullptr, &texture);
+			if (FAILED(result))
+			{
+				Logger::Get().Log("Failed to load texture: " + std::string(textureFilename.begin(), textureFilename.end()), __FILE__, __LINE__, Logger::LogLevel::Error);
+				return false;
+			}
+			textures.push_back(texture);
+		}
 
 		// Create and initialize the model object.
 		m_Model = new ModelClass;
 
-		result = m_Model->Initialize(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), modelFilename, Filename);
+		result = m_Model->Initialize(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), modelFilename, textures);
 		if (!result)
 		{
 			Logger::Get().Log("Could not initialize the model object", __FILE__, __LINE__, Logger::LogLevel::Error);
@@ -267,13 +280,36 @@ bool ApplicationClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 
 		// Set the file names of the bath model.
 		strcpy_s(modelFilename, "bath.txt");
-		// replace first element with the new filename
-		Filename[0] = "marble01.tga";
+		// Charger les textures initiales pour m_BathModel
+		std::vector<std::wstring> bathTextures = {
+			L"marble01.tga",
+			L"normal01.tga",
+			L"spec02.tga",
+			L"alpha01.tga",
+			L"light01.tga",
+			L"moss01.tga"
+		};
+
+		textures.clear();
+		for (const auto& textureFilename : bathTextures)
+		{
+			ID3D11ShaderResourceView* texture = nullptr;
+			result = DirectX::CreateWICTextureFromFile(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), textureFilename.c_str(), nullptr, &texture);
+			if (FAILED(result))
+			{
+				Logger::Get().Log("Failed to load texture: " + std::string(textureFilename.begin(), textureFilename.end()), __FILE__, __LINE__, Logger::LogLevel::Error);
+				return false;
+			}
+			textures.push_back(texture);
+		}
+
+		// Set the file name of the bath model.
+		strcpy_s(modelFilename, "bath.txt");
 
 		// Create and initialize the bath model object.
 		m_BathModel = new ModelClass;
 
-		result = m_BathModel->Initialize(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), modelFilename, Filename);
+		result = m_BathModel->Initialize(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), modelFilename, textures);
 		if (!result)
 		{
 			MessageBox(hwnd, L"Could not initialize the bath model object.", L"Error", MB_OK);
@@ -283,12 +319,32 @@ bool ApplicationClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 		// Set the file names of the water model.
 		strcpy_s(modelFilename, "water.txt");
 		// replace first element with the new filename
-		Filename[1] = "water01.tga";
+		std::vector<std::wstring> waterTextures = {
+			L"water01.tga",
+			L"normal01.tga",
+			L"spec02.tga",
+			L"alpha01.tga",
+			L"light01.tga",
+			L"moss01.tga"
+		};
+
+		textures.clear();
+		for (const auto& textureFilename : waterTextures)
+		{
+			ID3D11ShaderResourceView* texture = nullptr;
+			result = DirectX::CreateWICTextureFromFile(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), textureFilename.c_str(), nullptr, &texture);
+			if (FAILED(result))
+			{
+				Logger::Get().Log("Failed to load texture: " + std::string(textureFilename.begin(), textureFilename.end()), __FILE__, __LINE__, Logger::LogLevel::Error);
+				return false;
+			}
+			textures.push_back(texture);
+		}
 
 		// Create and initialize the water model object.
 		m_WaterModel = new ModelClass;
 
-		result = m_WaterModel->Initialize(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), modelFilename, Filename);
+		result = m_WaterModel->Initialize(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), modelFilename, textures);
 		if (!result)
 		{
 			MessageBox(hwnd, L"Could not initialize the water model object.", L"Error", MB_OK);
@@ -1051,7 +1107,7 @@ bool ApplicationClass::Render(float rotation, float x, float y, float z, float t
 
 
 		if (!m_enableCelShading) {
-			result = m_ShaderManager->RenderlightShader(m_Direct3D->GetDeviceContext(), cube->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix, cube->GetTexture(0),
+			result = m_ShaderManager->RenderlightShader(m_Direct3D->GetDeviceContext(), cube->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix, cube->GetTexture(),
 				diffuseColor, lightPosition, ambientColor);
 			if (!result)
 			{
@@ -1062,7 +1118,7 @@ bool ApplicationClass::Render(float rotation, float x, float y, float z, float t
 
 		// Render cel shading globally to the scene using the cel shader if the checkbox is checked.
 		if (m_enableCelShading) {
-			result = m_ShaderManager->RenderCelShadingShader(m_Direct3D->GetDeviceContext(), cube->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix, cube->GetTexture(0),
+			result = m_ShaderManager->RenderCelShadingShader(m_Direct3D->GetDeviceContext(), cube->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix, cube->GetTexture(),
 				m_Lights[0]->GetDirection(), m_Lights[0]->GetDiffuseColor(), TrueLightPosition);
 			if (!result)
 			{
@@ -1089,7 +1145,7 @@ bool ApplicationClass::Render(float rotation, float x, float y, float z, float t
 		object->Render(m_Direct3D->GetDeviceContext());
 
 		if (!m_enableCelShading) {
-			result = m_ShaderManager->RenderlightShader(m_Direct3D->GetDeviceContext(), object->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix, object->GetTexture(0),
+			result = m_ShaderManager->RenderlightShader(m_Direct3D->GetDeviceContext(), object->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix, object->GetTexture(),
 				diffuseColor, lightPosition, ambientColor);
 
 			if (!result)
@@ -1101,7 +1157,7 @@ bool ApplicationClass::Render(float rotation, float x, float y, float z, float t
 
 		// Render cel shading globally to the scene using the cel shader if the checkbox is checked.
 		if (m_enableCelShading) {
-			result = m_ShaderManager->RenderCelShadingShader(m_Direct3D->GetDeviceContext(), object->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix, object->GetTexture(0),
+			result = m_ShaderManager->RenderCelShadingShader(m_Direct3D->GetDeviceContext(), object->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix, object->GetTexture(),
 				m_Lights[0]->GetDirection(), m_Lights[0]->GetDiffuseColor(), TrueLightPosition);
 			if (!result)
 			{
@@ -1124,7 +1180,7 @@ bool ApplicationClass::Render(float rotation, float x, float y, float z, float t
 
 		chunk->Render(m_Direct3D->GetDeviceContext());
 		if (!m_enableCelShading) {
-			result = m_ShaderManager->RenderlightShader(m_Direct3D->GetDeviceContext(), chunk->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix, chunk->GetTexture(5),
+			result = m_ShaderManager->RenderlightShader(m_Direct3D->GetDeviceContext(), chunk->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix, chunk->GetTexture(),
 				diffuseColor, lightPosition, ambientColor);
 
 			if (!result)
@@ -1137,7 +1193,7 @@ bool ApplicationClass::Render(float rotation, float x, float y, float z, float t
 
 		// Render cel shading globally to the scene using the cel shader if the checkbox is checked.
 		if (m_enableCelShading) {
-			result = m_ShaderManager->RenderCelShadingShader(m_Direct3D->GetDeviceContext(), chunk->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix, chunk->GetTexture(5),
+			result = m_ShaderManager->RenderCelShadingShader(m_Direct3D->GetDeviceContext(), chunk->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix, chunk->GetTexture(),
 				m_Lights[0]->GetDirection(), m_Lights[0]->GetDiffuseColor(), TrueLightPosition);
 			if (!result)
 			{
@@ -1526,6 +1582,7 @@ void ApplicationClass::GenerateTerrain()
 
 	char modelFilename[128];
 	std::vector<string> Filename;
+	bool result;
 
 	XMMATRIX scaleMatrix;
 	float scaleX, scaleY, scaleZ;
@@ -1539,15 +1596,33 @@ void ApplicationClass::GenerateTerrain()
 	// Set the file name of the model.
 	strcpy_s(modelFilename, "plane.txt");
 
-	Filename.push_back("stone01.tga");
-	Filename.push_back("normal01.tga");
-	Filename.push_back("spec02.tga");
-	Filename.push_back("alpha01.tga");
-	Filename.push_back("light01.tga");
-	Filename.push_back("moss01.tga");
+	// Liste des fichiers de texture
+	std::vector<std::wstring> terrainTexture = {
+		L"moss01.tga",
+		L"normal01.tga",
+		L"spec02.tga",
+		L"alpha01.tga",
+		L"light01.tga"
+	};
+
+
+	textures.clear();
+	for (const auto& textureFilename : terrainTexture)
+	{
+		ID3D11ShaderResourceView* texture = nullptr;
+		result = DirectX::CreateWICTextureFromFile(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), textureFilename.c_str(), nullptr, &texture);
+		if (FAILED(result))
+		{
+			Logger::Get().Log("Failed to load texture: " + std::string(textureFilename.begin(), textureFilename.end()), __FILE__, __LINE__, Logger::LogLevel::Error);
+			return ;
+		}
+		textures.push_back(texture);
+	}
 
 	std::filesystem::path p(modelFilename);
 	std::string filenameWithoutExtension = p.stem().string();
+
+
 
 	// for loop to generate terrain chunks for a 10x10 grid
 	for (int i = 0; i < 10; i++)
@@ -1555,7 +1630,7 @@ void ApplicationClass::GenerateTerrain()
 		for (int j = 0; j < 10; j++)
 		{
 			Object* newTerrain = new Object();
-			newTerrain->Initialize(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), modelFilename, Filename);
+			newTerrain->Initialize(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), modelFilename, textures);
 
 			newTerrain->SetScaleMatrix(scaleMatrix);
 
@@ -1577,6 +1652,7 @@ void ApplicationClass::AddKobject(WCHAR* filepath)
 
 	char modelFilename[128];
 	vector<string> Filename;
+	bool result;
 
 	filesystem::path p(filepath);
 	string filename = p.stem().string();
@@ -1585,16 +1661,32 @@ void ApplicationClass::AddKobject(WCHAR* filepath)
 	wcstombs_s(&convertedChars, modelFilename, sizeof(modelFilename), filepath, _TRUNCATE);
 
 
-	// Set the name of the texture file that we will be loading.
-	Filename.push_back("stone01.tga");
-	Filename.push_back("normal01.tga");
-	Filename.push_back("spec02.tga");
-	Filename.push_back("alpha01.tga");
-	Filename.push_back("light01.tga");
-	Filename.push_back("moss01.tga");
+	/// Liste des fichiers de texture
+	std::vector<std::wstring> kobjTexture = {
+		L"moss01.tga",
+		L"normal01.tga",
+		L"spec02.tga",
+		L"alpha01.tga",
+		L"light01.tga"
+	};
+
+
+	textures.clear();
+	for (const auto& textureFilename : kobjTexture)
+	{
+		ID3D11ShaderResourceView* texture = nullptr;
+		result = DirectX::CreateWICTextureFromFile(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), textureFilename.c_str(), nullptr, &texture);
+		if (FAILED(result))
+		{
+			Logger::Get().Log("Failed to load texture: " + std::string(textureFilename.begin(), textureFilename.end()), __FILE__, __LINE__, Logger::LogLevel::Error);
+			return;
+		}
+		textures.push_back(texture);
+	}
+
 
 	Object* newObject = new Object();
-	newObject->Initialize(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), modelFilename, Filename);
+	newObject->Initialize(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), modelFilename, textures);
 	newObject->SetMass(1.0f);
 	newObject->SetTranslateMatrix(XMMatrixTranslation(0.0f, 50.0f, 0.0f));
 	newObject->SetName(filename);
@@ -1611,23 +1703,38 @@ void ApplicationClass::AddCube()
 	Logger::Get().Log("Adding cube", __FILE__, __LINE__);
 
 	char modelFilename[128];
-	vector<string> Filename;
+	bool result;
 
 	// Set the file name of the model.
 	strcpy_s(modelFilename, "cube.txt");
 
-	// Set the name of the texture file that we will be loading.
-	Filename.push_back("stone01.tga");
-	Filename.push_back("normal01.tga");
-	Filename.push_back("spec02.tga");
-	Filename.push_back("alpha01.tga");
-	Filename.push_back("light01.tga");
-	Filename.push_back("moss01.tga");
+	// Liste des fichiers de texture
+	std::vector<std::wstring> cubeTexture = {
+		L"moss01.tga",
+		L"normal01.tga",
+		L"spec02.tga",
+		L"alpha01.tga",
+		L"light01.tga"
+	};
+
+
+	textures.clear();
+	for (const auto& textureFilename : cubeTexture)
+	{
+		ID3D11ShaderResourceView* texture = nullptr;
+		result = DirectX::CreateWICTextureFromFile(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), textureFilename.c_str(), nullptr, &texture);
+		if (FAILED(result))
+		{
+			Logger::Get().Log("Failed to load texture: " + std::string(textureFilename.begin(), textureFilename.end()), __FILE__, __LINE__, Logger::LogLevel::Error);
+			return;
+		}
+		textures.push_back(texture);
+	}
 
 	static int cubeCount = 0;
 	float position = cubeCount * 2.0f;
 	Object* newCube = new Object();
-	newCube->Initialize(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), modelFilename, Filename);
+	newCube->Initialize(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), modelFilename, textures);
 
 	newCube->SetTranslateMatrix(XMMatrixTranslation(position, 0.0f, 0.0f));
 

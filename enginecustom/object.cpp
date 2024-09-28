@@ -17,6 +17,23 @@ Object::Object() : ModelClass()
 
 Object::~Object()
 {
+	if (m_Texture) {
+		m_Texture->Release();
+		m_Texture = nullptr;
+	}
+}
+
+bool Object::LoadTexture(ID3D11Device* device, ID3D11DeviceContext* deviceContext, const std::wstring& filename) {
+	HRESULT result = DirectX::CreateWICTextureFromFile(device, deviceContext, filename.c_str(), nullptr, &m_Texture);
+	if (FAILED(result)) {
+		return false;
+	}
+	return true;
+}
+
+ID3D11ShaderResourceView* Object::GetTexture() const
+{
+	return m_Texture;
 }
 
 void Object::SetScaleMatrix(XMMATRIX scaleMatrix)
