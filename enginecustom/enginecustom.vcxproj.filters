@@ -370,6 +370,9 @@
     <Image Include="KhaoticIcon.ico">
       <Filter>Assets</Filter>
     </Image>
+    <Image Include="C:\Users\Bacon\Downloads\BricksDragfacedRunning008\Bricks2K.png">
+      <Filter>Assets</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

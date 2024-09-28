@@ -31,6 +31,7 @@
 #include "physics.h"
 
 #include <WICTextureLoader.h>
+#include <comdef.h> // Pour _com_error
 
 
 /////////////

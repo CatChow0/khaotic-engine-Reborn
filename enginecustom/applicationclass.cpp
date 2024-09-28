@@ -1069,8 +1069,6 @@ bool ApplicationClass::Render(float rotation, float x, float y, float z, float t
 	positionZ = lightPosition[0].z;
 	XMFLOAT3 TrueLightPosition = XMFLOAT3(positionX, positionY, positionZ);
 
-	Logger::Get().Log("PositionX: " + std::to_string(positionX) + ", PositionY: " + std::to_string(positionY) + ", PositionZ: " + std::to_string(positionZ), __FILE__, __LINE__, Logger::LogLevel::Debug);
-
 	scaleMatrix = XMMatrixScaling(0.5f, 0.5f, 0.5f);  // Build the scaling matrix.
 	rotateMatrix = XMMatrixRotationY(rotation);  // Build the rotation matrix.
 	translateMatrix = XMMatrixTranslation(x, y, z);  // Build the translation matrix.
@@ -1180,8 +1178,7 @@ bool ApplicationClass::Render(float rotation, float x, float y, float z, float t
 
 		chunk->Render(m_Direct3D->GetDeviceContext());
 		if (!m_enableCelShading) {
-			result = m_ShaderManager->RenderlightShader(m_Direct3D->GetDeviceContext(), chunk->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix, chunk->GetTexture(),
-				diffuseColor, lightPosition, ambientColor);
+			result = m_ShaderManager->RenderTextureShader(m_Direct3D->GetDeviceContext(), chunk->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix, chunk->GetTexture());
 
 			if (!result)
 			{
@@ -1210,8 +1207,8 @@ bool ApplicationClass::Render(float rotation, float x, float y, float z, float t
 	m_BathModel->Render(m_Direct3D->GetDeviceContext());
 
 	// Render the bath model using the light shader.
-	result = m_ShaderManager->RenderTextureShader(m_Direct3D->GetDeviceContext(), m_BathModel->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix,
-		m_BathModel->GetTexture(0));
+	result = m_ShaderManager->RenderlightShader(m_Direct3D->GetDeviceContext(), m_BathModel->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix,
+		m_BathModel->GetTexture(0), diffuseColor, lightPosition, ambientColor);
 	if (!result)
 	{
 		return false;
@@ -1598,23 +1595,31 @@ void ApplicationClass::GenerateTerrain()
 
 	// Liste des fichiers de texture
 	std::vector<std::wstring> terrainTexture = {
-		L"moss01.tga",
-		L"normal01.tga",
-		L"spec02.tga",
-		L"alpha01.tga",
-		L"light01.tga"
+		L"Bricks2K.png",
 	};
 
 
 	textures.clear();
 	for (const auto& textureFilename : terrainTexture)
 	{
+
 		ID3D11ShaderResourceView* texture = nullptr;
-		result = DirectX::CreateWICTextureFromFile(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), textureFilename.c_str(), nullptr, &texture);
+		HRESULT result = DirectX::CreateWICTextureFromFile(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), textureFilename.c_str(), nullptr, &texture);
 		if (FAILED(result))
 		{
-			Logger::Get().Log("Failed to load texture: " + std::string(textureFilename.begin(), textureFilename.end()), __FILE__, __LINE__, Logger::LogLevel::Error);
-			return ;
+			// Utiliser _com_error pour obtenir des informations détaillées sur l'erreur
+			_com_error err(result);
+			LPCTSTR errMsg = err.ErrorMessage();
+
+			//convertie errMessage en std::wstring
+			std::wstring ws(errMsg);
+			std::string str(ws.begin(), ws.end());
+
+			Logger::Get().Log("Failed to load texture: " + std::string(textureFilename.begin(), textureFilename.end()) +
+				"\nError: " + std::to_string(result) +
+				"\nDescription: " + str,
+				__FILE__, __LINE__, Logger::LogLevel::Error);
+			return ; // Assurez-vous de retourner false ou de gérer l'erreur de manière appropriée
 		}
 		textures.push_back(texture);
 	}
