@@ -167,7 +167,7 @@ void imguiManager::WidgetObjectWindow(ApplicationClass* app)
 			for (int count = 0; count < 6; count++)
 			{
 				std::string textureLabel = "Texture##" + std::to_string(index);
-				ID3D11ShaderResourceView* texture = object->GetTexture();
+				ID3D11ShaderResourceView* texture = object->GetTexture(count);
 				if (texture != nullptr)
 				{
 					// Set the cursor position
@@ -188,7 +188,7 @@ void imguiManager::WidgetObjectWindow(ApplicationClass* app)
 			for (int count = 0; count < 6; count++)
 			{
 				std::string textureLabel = "Texture##" + std::to_string(index);
-				ID3D11ShaderResourceView* texture = object->GetTexture();
+				ID3D11ShaderResourceView* texture = object->GetTexture(count);
 				if (texture != nullptr)
 				{
 					// Set the cursor position

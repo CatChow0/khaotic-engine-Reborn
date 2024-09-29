@@ -89,7 +89,7 @@ public:
 	void Render(ID3D11DeviceContext*);
 
 	int GetIndexCount();
-	ID3D11ShaderResourceView* GetTexture(int);
+	ID3D11ShaderResourceView* GetTexture(int index) const;
 	bool ChangeTexture(ID3D11Device*, ID3D11DeviceContext*, std::wstring filename, int index);
 
 private:

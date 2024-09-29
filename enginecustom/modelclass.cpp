@@ -77,9 +77,11 @@ int ModelClass::GetIndexCount()
 	return m_indexCount;
 }
 
-ID3D11ShaderResourceView* ModelClass::GetTexture(int index)
-{
-	return m_Textures[index];
+ID3D11ShaderResourceView* ModelClass::GetTexture(int index) const {
+	if (index >= 0 && index < m_Textures.size()) {
+		return m_Textures[index];
+	}
+	return nullptr; // Retourne nullptr si l'index est hors limites
 }
 
 

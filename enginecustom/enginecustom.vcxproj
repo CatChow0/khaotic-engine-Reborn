@@ -225,7 +225,7 @@
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="alpha01.tga" />
-    <Image Include="C:\Users\Bacon\Downloads\BricksDragfacedRunning008\Bricks2K.png" />
+    <CopyFileToFolders Include="C:\Users\Bacon\Downloads\BricksDragfacedRunning008\Bricks2K.png" />
     <Image Include="dirt01.tga" />
     <CopyFileToFolders Include="font01.tga" />
     <Image Include="KhaoticIcon.ico" />

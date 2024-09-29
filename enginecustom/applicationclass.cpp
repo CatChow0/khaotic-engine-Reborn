@@ -1105,7 +1105,7 @@ bool ApplicationClass::Render(float rotation, float x, float y, float z, float t
 
 
 		if (!m_enableCelShading) {
-			result = m_ShaderManager->RenderlightShader(m_Direct3D->GetDeviceContext(), cube->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix, cube->GetTexture(),
+			result = m_ShaderManager->RenderlightShader(m_Direct3D->GetDeviceContext(), cube->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix, cube->GetTexture(0),
 				diffuseColor, lightPosition, ambientColor);
 			if (!result)
 			{
@@ -1116,7 +1116,7 @@ bool ApplicationClass::Render(float rotation, float x, float y, float z, float t
 
 		// Render cel shading globally to the scene using the cel shader if the checkbox is checked.
 		if (m_enableCelShading) {
-			result = m_ShaderManager->RenderCelShadingShader(m_Direct3D->GetDeviceContext(), cube->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix, cube->GetTexture(),
+			result = m_ShaderManager->RenderCelShadingShader(m_Direct3D->GetDeviceContext(), cube->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix, cube->GetTexture(0),
 				m_Lights[0]->GetDirection(), m_Lights[0]->GetDiffuseColor(), TrueLightPosition);
 			if (!result)
 			{
@@ -1143,7 +1143,7 @@ bool ApplicationClass::Render(float rotation, float x, float y, float z, float t
 		object->Render(m_Direct3D->GetDeviceContext());
 
 		if (!m_enableCelShading) {
-			result = m_ShaderManager->RenderlightShader(m_Direct3D->GetDeviceContext(), object->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix, object->GetTexture(),
+			result = m_ShaderManager->RenderlightShader(m_Direct3D->GetDeviceContext(), object->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix, object->GetTexture(0),
 				diffuseColor, lightPosition, ambientColor);
 
 			if (!result)
@@ -1155,7 +1155,7 @@ bool ApplicationClass::Render(float rotation, float x, float y, float z, float t
 
 		// Render cel shading globally to the scene using the cel shader if the checkbox is checked.
 		if (m_enableCelShading) {
-			result = m_ShaderManager->RenderCelShadingShader(m_Direct3D->GetDeviceContext(), object->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix, object->GetTexture(),
+			result = m_ShaderManager->RenderCelShadingShader(m_Direct3D->GetDeviceContext(), object->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix, object->GetTexture(0),
 				m_Lights[0]->GetDirection(), m_Lights[0]->GetDiffuseColor(), TrueLightPosition);
 			if (!result)
 			{
@@ -1178,7 +1178,13 @@ bool ApplicationClass::Render(float rotation, float x, float y, float z, float t
 
 		chunk->Render(m_Direct3D->GetDeviceContext());
 		if (!m_enableCelShading) {
-			result = m_ShaderManager->RenderTextureShader(m_Direct3D->GetDeviceContext(), chunk->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix, chunk->GetTexture());
+			if (chunk->GetTexture(0) == nullptr)
+			{
+				Logger::Get().Log("Could not render the terrain model using the light shader, texture is null", __FILE__, __LINE__, Logger::LogLevel::Error);
+				return false;
+			}
+
+			result = m_ShaderManager->RenderTextureShader(m_Direct3D->GetDeviceContext(), chunk->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix, chunk->GetTexture(0));
 
 			if (!result)
 			{
@@ -1190,7 +1196,7 @@ bool ApplicationClass::Render(float rotation, float x, float y, float z, float t
 
 		// Render cel shading globally to the scene using the cel shader if the checkbox is checked.
 		if (m_enableCelShading) {
-			result = m_ShaderManager->RenderCelShadingShader(m_Direct3D->GetDeviceContext(), chunk->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix, chunk->GetTexture(),
+			result = m_ShaderManager->RenderCelShadingShader(m_Direct3D->GetDeviceContext(), chunk->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix, chunk->GetTexture(0),
 				m_Lights[0]->GetDirection(), m_Lights[0]->GetDiffuseColor(), TrueLightPosition);
 			if (!result)
 			{
@@ -1578,7 +1584,6 @@ void ApplicationClass::GenerateTerrain()
 	Logger::Get().Log("Generating terrain", __FILE__, __LINE__);
 
 	char modelFilename[128];
-	std::vector<string> Filename;
 	bool result;
 
 	XMMATRIX scaleMatrix;
@@ -1622,11 +1627,14 @@ void ApplicationClass::GenerateTerrain()
 			return ; // Assurez-vous de retourner false ou de gérer l'erreur de manière appropriée
 		}
 		textures.push_back(texture);
+
+		// log success message
+		Logger::Get().Log("Texture loaded: " + std::string(textureFilename.begin(), textureFilename.end()), __FILE__, __LINE__, Logger::LogLevel::Initialize);
+		
 	}
 
 	std::filesystem::path p(modelFilename);
 	std::string filenameWithoutExtension = p.stem().string();
-
 
 
 	// for loop to generate terrain chunks for a 10x10 grid

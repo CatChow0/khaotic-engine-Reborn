@@ -370,9 +370,6 @@
     <Image Include="KhaoticIcon.ico">
       <Filter>Assets</Filter>
     </Image>
-    <Image Include="C:\Users\Bacon\Downloads\BricksDragfacedRunning008\Bricks2K.png">
-      <Filter>Assets</Filter>
-    </Image>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -558,6 +555,9 @@
     </CopyFileToFolders>
     <CopyFileToFolders Include="celshading.ps">
       <Filter>shader</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="C:\Users\Bacon\Downloads\BricksDragfacedRunning008\Bricks2K.png">
+      <Filter>Assets</Filter>
     </CopyFileToFolders>
   </ItemGroup>
 </Project>
