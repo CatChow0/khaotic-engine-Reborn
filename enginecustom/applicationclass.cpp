@@ -1663,7 +1663,7 @@ void ApplicationClass::AddKobject(WCHAR* filepath)
 
 	/// Liste des fichiers de texture
 	std::vector<std::wstring> kobjTexture = {
-		L"assets/Texture/moss01.png"
+		L"assets/Texture/marble01.png"
 	};
 
 
