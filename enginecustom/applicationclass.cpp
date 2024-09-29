@@ -1184,8 +1184,9 @@ bool ApplicationClass::Render(float rotation, float x, float y, float z, float t
 				return false;
 			}
 
-			result = m_ShaderManager->RenderTextureShader(m_Direct3D->GetDeviceContext(), chunk->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix, chunk->GetTexture(0));
-
+			result = m_ShaderManager->RenderSpecMapShader(m_Direct3D->GetDeviceContext(), chunk->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix,
+				chunk->GetTexture(0), chunk->GetTexture(1), chunk->GetTexture(2), m_Lights[0]->GetDirection(), m_Lights[0]->GetDiffuseColor(),
+				m_Camera->GetPosition(), m_Lights[0]->GetSpecularColor(), m_Lights[0]->GetSpecularPower());
 			if (!result)
 			{
 				Logger::Get().Log("Could not render the terrain model using the light shader", __FILE__, __LINE__, Logger::LogLevel::Error);
@@ -1601,6 +1602,8 @@ void ApplicationClass::GenerateTerrain()
 	// Liste des fichiers de texture
 	std::vector<std::wstring> terrainTexture = {
 		L"Bricks2K.png",
+		L"Bricks2K_normal.png",
+		L"Bricks2K_specular.png"
 	};
 
 
