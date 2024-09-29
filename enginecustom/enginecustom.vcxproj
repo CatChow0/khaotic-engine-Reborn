@@ -269,11 +269,21 @@
     <ResourceCompile Include="resources.rc" />
   </ItemGroup>
   <ItemGroup>
-    <Object Include="assets\Model\OBJ\86.obj" />
-    <Object Include="assets\Model\OBJ\cone.obj" />
-    <Object Include="assets\Model\OBJ\isosphere.obj" />
-    <Object Include="assets\Model\OBJ\monke.obj" />
-    <Object Include="assets\Model\OBJ\vaisseau.obj" />
+    <CopyFileToFolders Include="assets\Model\OBJ\86.obj">
+      <FileType>Document</FileType>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="assets\Model\OBJ\cone.obj">
+      <FileType>Document</FileType>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="assets\Model\OBJ\isosphere.obj">
+      <FileType>Document</FileType>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="assets\Model\OBJ\monke.obj">
+      <FileType>Document</FileType>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="assets\Model\OBJ\vaisseau.obj">
+      <FileType>Document</FileType>
+    </CopyFileToFolders>
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="assets\Model\TXT\bath.txt" />

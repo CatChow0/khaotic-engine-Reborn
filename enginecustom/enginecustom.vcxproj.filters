@@ -590,22 +590,20 @@
     <CopyFileToFolders Include="assets\Model\TXT\water.txt">
       <Filter>Assets\Model\TXT</Filter>
     </CopyFileToFolders>
-  </ItemGroup>
-  <ItemGroup>
-    <Object Include="assets\Model\OBJ\cone.obj">
+    <CopyFileToFolders Include="assets\Model\OBJ\vaisseau.obj">
       <Filter>Assets\Model\OBJ</Filter>
-    </Object>
-    <Object Include="assets\Model\OBJ\isosphere.obj">
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="assets\Model\OBJ\monke.obj">
       <Filter>Assets\Model\OBJ</Filter>
-    </Object>
-    <Object Include="assets\Model\OBJ\monke.obj">
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="assets\Model\OBJ\isosphere.obj">
       <Filter>Assets\Model\OBJ</Filter>
-    </Object>
-    <Object Include="assets\Model\OBJ\vaisseau.obj">
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="assets\Model\OBJ\cone.obj">
       <Filter>Assets\Model\OBJ</Filter>
-    </Object>
-    <Object Include="assets\Model\OBJ\86.obj">
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="assets\Model\OBJ\86.obj">
       <Filter>Assets\Model\OBJ</Filter>
-    </Object>
+    </CopyFileToFolders>
   </ItemGroup>
 </Project>
