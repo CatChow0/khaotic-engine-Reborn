@@ -13,6 +13,7 @@
 
 # Don't ignore 3d model in OBJ
 !enginecustom/assets/Model/OBJ/*
+!enginecustom/assets/Model/OBJ/86.obj
 
 # Precompiled Headers
 *.gch
