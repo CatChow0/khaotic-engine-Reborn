@@ -224,24 +224,31 @@
     </CopyFileToFolders>
   </ItemGroup>
   <ItemGroup>
-    <CopyFileToFolders Include="alpha01.tga" />
     <CopyFileToFolders Include="C:\Users\Bacon\Downloads\BricksDragfacedRunning008\Bricks2K.png" />
-    <Image Include="dirt01.tga" />
     <CopyFileToFolders Include="font01.tga" />
+    <Image Include="alpha01.png" />
+    <Image Include="dirt01.png" />
+    <Image Include="font01.png" />
+    <Image Include="ground01.png" />
     <Image Include="KhaoticIcon.ico" />
-    <CopyFileToFolders Include="light01.tga" />
-    <CopyFileToFolders Include="moss01.tga" />
-    <CopyFileToFolders Include="normal01.tga" />
-    <CopyFileToFolders Include="marble01.tga" />
-    <Image Include="papier.tga" />
-    <CopyFileToFolders Include="spec02.tga" />
     <CopyFileToFolders Include="sprite01.tga" />
     <CopyFileToFolders Include="sprite02.tga" />
     <CopyFileToFolders Include="sprite03.tga" />
     <CopyFileToFolders Include="sprite04.tga" />
-    <CopyFileToFolders Include="stone01.tga" />
-    <CopyFileToFolders Include="wall.tga" />
-    <CopyFileToFolders Include="water01.tga" />
+    <Image Include="light01.png" />
+    <Image Include="marble01.png" />
+    <Image Include="moss01.png" />
+    <Image Include="normal01.png" />
+    <Image Include="spec02.png" />
+    <Image Include="sprite01.png" />
+    <Image Include="sprite02.png" />
+    <Image Include="sprite03.png" />
+    <Image Include="sprite04.png" />
+    <Image Include="stone01.png" />
+    <Image Include="stone01.tga" />
+    <Image Include="wall.png" />
+    <Image Include="wall01.png" />
+    <Image Include="water01.png" />
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="cube.txt" />

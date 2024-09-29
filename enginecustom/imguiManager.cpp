@@ -205,7 +205,7 @@ void imguiManager::WidgetObjectWindow(ApplicationClass* app)
 						ofn.lpstrFile = szFile;
 						ofn.lpstrFile[0] = '\0';
 						ofn.nMaxFile = sizeof(szFile);
-						ofn.lpstrFilter = L"Texture\0*.tga\0";
+						ofn.lpstrFilter = L"Texture\0*.png\0";
 						ofn.nFilterIndex = 1;
 						ofn.lpstrFileTitle = NULL;
 						ofn.nMaxFileTitle = 0;

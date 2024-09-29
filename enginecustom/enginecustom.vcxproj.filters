@@ -37,6 +37,9 @@
     <Filter Include="Fichiers d%27en-tête\DirectX Tool Kit">
       <UniqueIdentifier>{d710c862-b37d-4ad5-aa92-2456f9745881}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Assets\Texture">
+      <UniqueIdentifier>{4873a73d-d11c-4d40-b847-b6d7fef4b23d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -361,14 +364,62 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="papier.tga">
-      <Filter>assets</Filter>
-    </Image>
-    <Image Include="dirt01.tga">
-      <Filter>assets</Filter>
-    </Image>
     <Image Include="KhaoticIcon.ico">
       <Filter>Assets</Filter>
+    </Image>
+    <Image Include="alpha01.png">
+      <Filter>Assets\Texture</Filter>
+    </Image>
+    <Image Include="dirt01.png">
+      <Filter>Assets\Texture</Filter>
+    </Image>
+    <Image Include="font01.png">
+      <Filter>Assets\Texture</Filter>
+    </Image>
+    <Image Include="ground01.png">
+      <Filter>Assets\Texture</Filter>
+    </Image>
+    <Image Include="light01.png">
+      <Filter>Assets\Texture</Filter>
+    </Image>
+    <Image Include="marble01.png">
+      <Filter>Assets\Texture</Filter>
+    </Image>
+    <Image Include="moss01.png">
+      <Filter>Assets\Texture</Filter>
+    </Image>
+    <Image Include="normal01.png">
+      <Filter>Assets\Texture</Filter>
+    </Image>
+    <Image Include="spec02.png">
+      <Filter>Assets\Texture</Filter>
+    </Image>
+    <Image Include="sprite01.png">
+      <Filter>Assets\Texture</Filter>
+    </Image>
+    <Image Include="sprite02.png">
+      <Filter>Assets\Texture</Filter>
+    </Image>
+    <Image Include="sprite03.png">
+      <Filter>Assets\Texture</Filter>
+    </Image>
+    <Image Include="sprite04.png">
+      <Filter>Assets\Texture</Filter>
+    </Image>
+    <Image Include="stone01.png">
+      <Filter>Assets\Texture</Filter>
+    </Image>
+    <Image Include="wall.png">
+      <Filter>Assets\Texture</Filter>
+    </Image>
+    <Image Include="wall01.png">
+      <Filter>Assets\Texture</Filter>
+    </Image>
+    <Image Include="water01.png">
+      <Filter>Assets\Texture</Filter>
+    </Image>
+    <Image Include="stone01.tga">
+      <Filter>Assets\Texture</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>
@@ -409,28 +460,10 @@
     <CopyFileToFolders Include="font01.tga">
       <Filter>fonts</Filter>
     </CopyFileToFolders>
-    <CopyFileToFolders Include="stone01.tga">
-      <Filter>assets</Filter>
-    </CopyFileToFolders>
     <CopyFileToFolders Include="cube.txt">
       <Filter>Assets</Filter>
     </CopyFileToFolders>
     <CopyFileToFolders Include="plane.txt">
-      <Filter>Assets</Filter>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="alpha01.tga">
-      <Filter>Assets</Filter>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="light01.tga">
-      <Filter>Assets</Filter>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="moss01.tga">
-      <Filter>Assets</Filter>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="normal01.tga">
-      <Filter>Assets</Filter>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="spec02.tga">
       <Filter>Assets</Filter>
     </CopyFileToFolders>
     <CopyFileToFolders Include="sprite01.tga">
@@ -520,16 +553,7 @@
     <CopyFileToFolders Include="water.vs">
       <Filter>shader</Filter>
     </CopyFileToFolders>
-    <CopyFileToFolders Include="wall.tga">
-      <Filter>assets</Filter>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="water01.tga">
-      <Filter>Assets</Filter>
-    </CopyFileToFolders>
     <CopyFileToFolders Include="bath.txt">
-      <Filter>Assets</Filter>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="marble01.tga">
       <Filter>Assets</Filter>
     </CopyFileToFolders>
     <CopyFileToFolders Include="water.txt">
@@ -557,7 +581,7 @@
       <Filter>shader</Filter>
     </CopyFileToFolders>
     <CopyFileToFolders Include="C:\Users\Bacon\Downloads\BricksDragfacedRunning008\Bricks2K.png">
-      <Filter>Assets</Filter>
+      <Filter>Assets\Texture</Filter>
     </CopyFileToFolders>
   </ItemGroup>
 </Project>

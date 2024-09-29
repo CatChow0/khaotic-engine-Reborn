@@ -175,12 +175,12 @@ bool ApplicationClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 
 		// Charger les textures
 		std::vector<std::wstring> textureFilenames = {
-			L"stone01.tga",
-			L"normal01.tga",
-			L"spec02.tga",
-			L"alpha01.tga",
-			L"light01.tga",
-			L"moss01.tga"
+			L"stone01.png",
+			L"normal01.png",
+			L"spec02.png",
+			L"alpha01.png",
+			L"light01.png",
+			L"moss01.png"
 		};
 
 		for (const auto& textureFilename : textureFilenames)
@@ -282,12 +282,12 @@ bool ApplicationClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 		strcpy_s(modelFilename, "bath.txt");
 		// Charger les textures initiales pour m_BathModel
 		std::vector<std::wstring> bathTextures = {
-			L"marble01.tga",
-			L"normal01.tga",
-			L"spec02.tga",
-			L"alpha01.tga",
-			L"light01.tga",
-			L"moss01.tga"
+			L"marble01.png",
+			L"normal01.png",
+			L"spec02.png",
+			L"alpha01.png",
+			L"light01.png",
+			L"moss01.png"
 		};
 
 		textures.clear();
@@ -320,12 +320,12 @@ bool ApplicationClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 		strcpy_s(modelFilename, "water.txt");
 		// replace first element with the new filename
 		std::vector<std::wstring> waterTextures = {
-			L"water01.tga",
-			L"normal01.tga",
-			L"spec02.tga",
-			L"alpha01.tga",
-			L"light01.tga",
-			L"moss01.tga"
+			L"water01.png",
+			L"normal01.png",
+			L"spec02.png",
+			L"alpha01.png",
+			L"light01.png",
+			L"moss01.png"
 		};
 
 		textures.clear();
@@ -1676,11 +1676,11 @@ void ApplicationClass::AddKobject(WCHAR* filepath)
 
 	/// Liste des fichiers de texture
 	std::vector<std::wstring> kobjTexture = {
-		L"moss01.tga",
-		L"normal01.tga",
-		L"spec02.tga",
-		L"alpha01.tga",
-		L"light01.tga"
+		L"moss01.png",
+		L"normal01.png",
+		L"spec02.png",
+		L"alpha01.png",
+		L"light01.png"
 	};
 
 
@@ -1723,11 +1723,11 @@ void ApplicationClass::AddCube()
 
 	// Liste des fichiers de texture
 	std::vector<std::wstring> cubeTexture = {
-		L"moss01.tga",
-		L"normal01.tga",
-		L"spec02.tga",
-		L"alpha01.tga",
-		L"light01.tga"
+		L"moss01.png",
+		L"normal01.png",
+		L"spec02.png",
+		L"alpha01.png",
+		L"light01.png"
 	};
 
 
