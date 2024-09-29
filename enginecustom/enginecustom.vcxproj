@@ -250,7 +250,6 @@
     <CopyFileToFolders Include="sprite02.tga" />
     <CopyFileToFolders Include="sprite03.tga" />
     <CopyFileToFolders Include="sprite04.tga" />
-    <Image Include="stone01.tga" />
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="font01.txt" />
@@ -291,11 +290,9 @@
       <FileType>Text</FileType>
     </CopyFileToFolders>
     <CopyFileToFolders Include="assets\Model\TXT\cube.txt" />
-    <CopyFileToFolders Include="assets\Model\TXT\font01.txt" />
     <CopyFileToFolders Include="assets\Model\TXT\ground.txt" />
     <CopyFileToFolders Include="assets\Model\TXT\plane.txt" />
     <CopyFileToFolders Include="assets\Model\TXT\sphere.txt" />
-    <CopyFileToFolders Include="assets\Model\TXT\sprite_data_01.txt" />
     <CopyFileToFolders Include="assets\Model\TXT\square.txt" />
     <CopyFileToFolders Include="assets\Model\TXT\wall.txt" />
     <CopyFileToFolders Include="assets\Model\TXT\water.txt" />

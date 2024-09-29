@@ -376,9 +376,6 @@
     <Image Include="KhaoticIcon.ico">
       <Filter>Assets</Filter>
     </Image>
-    <Image Include="stone01.tga">
-      <Filter>Assets\Texture</Filter>
-    </Image>
     <Image Include="assets\Texture\BricksGLOSS2K.png">
       <Filter>Assets\Texture</Filter>
     </Image>
@@ -566,9 +563,6 @@
     <CopyFileToFolders Include="assets\Model\TXT\cube.txt">
       <Filter>Assets\Model\TXT</Filter>
     </CopyFileToFolders>
-    <CopyFileToFolders Include="assets\Model\TXT\font01.txt">
-      <Filter>Assets\Model\TXT</Filter>
-    </CopyFileToFolders>
     <CopyFileToFolders Include="assets\Model\TXT\ground.txt">
       <Filter>Assets\Model\TXT</Filter>
     </CopyFileToFolders>
@@ -576,9 +570,6 @@
       <Filter>Assets\Model\TXT</Filter>
     </CopyFileToFolders>
     <CopyFileToFolders Include="assets\Model\TXT\sphere.txt">
-      <Filter>Assets\Model\TXT</Filter>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="assets\Model\TXT\sprite_data_01.txt">
       <Filter>Assets\Model\TXT</Filter>
     </CopyFileToFolders>
     <CopyFileToFolders Include="assets\Model\TXT\square.txt">

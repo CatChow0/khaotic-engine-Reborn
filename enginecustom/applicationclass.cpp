@@ -126,6 +126,7 @@ bool ApplicationClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 
 
 		// Set the sprite info file we will be using.
+		// 
 		strcpy_s(spriteFilename, "sprite_data_01.txt");
 
 		// Create and initialize the sprite object.
@@ -158,7 +159,7 @@ bool ApplicationClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 		}
 
 		// Set the file name of the bitmap file.
-		strcpy_s(bitmapFilename, "stone01.tga");
+		strcpy_s(bitmapFilename, "assets/Texture/stone01.tga");
 
 		// Create and initialize the bitmap object.
 		m_Bitmap = new BitmapClass;
@@ -171,16 +172,11 @@ bool ApplicationClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 		}
 
 		// Set the file name of the model.
-		strcpy_s(modelFilename, "cube.txt");
+		strcpy_s(modelFilename, "assets/Model/TXT/cube.txt");
 
 		// Charger les textures
 		std::vector<std::wstring> textureFilenames = {
-			L"stone01.png",
-			L"normal01.png",
-			L"spec02.png",
-			L"alpha01.png",
-			L"light01.png",
-			L"moss01.png"
+			L"assets/Texture/stone01.png"
 		};
 
 		for (const auto& textureFilename : textureFilenames)
@@ -278,16 +274,9 @@ bool ApplicationClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 		m_ModelList = new ModelListClass;
 		m_ModelList->Initialize(25);
 
-		// Set the file names of the bath model.
-		strcpy_s(modelFilename, "bath.txt");
 		// Charger les textures initiales pour m_BathModel
 		std::vector<std::wstring> bathTextures = {
-			L"marble01.png",
-			L"normal01.png",
-			L"spec02.png",
-			L"alpha01.png",
-			L"light01.png",
-			L"moss01.png"
+			L"assets/Texture/marble01.png"
 		};
 
 		textures.clear();
@@ -304,7 +293,7 @@ bool ApplicationClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 		}
 
 		// Set the file name of the bath model.
-		strcpy_s(modelFilename, "bath.txt");
+		strcpy_s(modelFilename, "assets/Model/TXT/bath.txt");
 
 		// Create and initialize the bath model object.
 		m_BathModel = new ModelClass;
@@ -317,15 +306,10 @@ bool ApplicationClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 		}
 
 		// Set the file names of the water model.
-		strcpy_s(modelFilename, "water.txt");
+		strcpy_s(modelFilename, "assets/Model/TXT/water.txt");
 		// replace first element with the new filename
 		std::vector<std::wstring> waterTextures = {
-			L"water01.png",
-			L"normal01.png",
-			L"spec02.png",
-			L"alpha01.png",
-			L"light01.png",
-			L"moss01.png"
+			L"assets/Texture/water01.png"
 		};
 
 		textures.clear();
@@ -1597,13 +1581,13 @@ void ApplicationClass::GenerateTerrain()
 	scaleMatrix = XMMatrixScaling(scaleX, scaleY, scaleZ);
 
 	// Set the file name of the model.
-	strcpy_s(modelFilename, "plane.txt");
+	strcpy_s(modelFilename, "assets/Model/TXT/plane.txt");
 
 	// Liste des fichiers de texture
 	std::vector<std::wstring> terrainTexture = {
-		L"Bricks2K.png",
-		L"Bricks2K_normal.png",
-		L"Bricks2K_specular.png"
+		L"assets/Texture/Bricks2K.png",
+		L"assets/Texture/BricksNRM2K.png",
+		L"assets/Texture/BricksGLOSS2K.png"
 	};
 
 
@@ -1679,11 +1663,7 @@ void ApplicationClass::AddKobject(WCHAR* filepath)
 
 	/// Liste des fichiers de texture
 	std::vector<std::wstring> kobjTexture = {
-		L"moss01.png",
-		L"normal01.png",
-		L"spec02.png",
-		L"alpha01.png",
-		L"light01.png"
+		L"assets/Texture/moss01.png"
 	};
 
 
@@ -1722,15 +1702,11 @@ void ApplicationClass::AddCube()
 	bool result;
 
 	// Set the file name of the model.
-	strcpy_s(modelFilename, "cube.txt");
+	strcpy_s(modelFilename, "assets/Model/TXT/cube.txt");
 
 	// Liste des fichiers de texture
 	std::vector<std::wstring> cubeTexture = {
-		L"moss01.png",
-		L"normal01.png",
-		L"spec02.png",
-		L"alpha01.png",
-		L"light01.png"
+		L"assets/Texture/Bricks2K.png"
 	};
 
 
