@@ -224,42 +224,36 @@
     </CopyFileToFolders>
   </ItemGroup>
   <ItemGroup>
-    <CopyFileToFolders Include="C:\Users\Bacon\Downloads\BricksDragfacedRunning008\Bricks2K.png" />
     <CopyFileToFolders Include="font01.tga" />
-    <Image Include="alpha01.png" />
-    <Image Include="dirt01.png" />
-    <Image Include="font01.png" />
-    <Image Include="ground01.png" />
+    <Image Include="assets\Texture\alpha01.png" />
+    <Image Include="assets\Texture\Bricks2K.png" />
+    <Image Include="assets\Texture\BricksGLOSS2K.png" />
+    <Image Include="assets\Texture\BricksNRM2K.png" />
+    <Image Include="assets\Texture\dirt01.png" />
+    <Image Include="assets\Texture\font01.png" />
+    <Image Include="assets\Texture\ground01.png" />
+    <Image Include="assets\Texture\light01.png" />
+    <Image Include="assets\Texture\marble01.png" />
+    <Image Include="assets\Texture\moss01.png" />
+    <Image Include="assets\Texture\normal01.png" />
+    <Image Include="assets\Texture\spec02.png" />
+    <Image Include="assets\Texture\sprite01.png" />
+    <Image Include="assets\Texture\sprite02.png" />
+    <Image Include="assets\Texture\sprite03.png" />
+    <Image Include="assets\Texture\sprite04.png" />
+    <Image Include="assets\Texture\stone01.png" />
+    <Image Include="assets\Texture\wall.png" />
+    <Image Include="assets\Texture\wall01.png" />
+    <Image Include="assets\Texture\water01.png" />
     <Image Include="KhaoticIcon.ico" />
     <CopyFileToFolders Include="sprite01.tga" />
     <CopyFileToFolders Include="sprite02.tga" />
     <CopyFileToFolders Include="sprite03.tga" />
     <CopyFileToFolders Include="sprite04.tga" />
-    <Image Include="light01.png" />
-    <Image Include="marble01.png" />
-    <Image Include="moss01.png" />
-    <Image Include="normal01.png" />
-    <Image Include="spec02.png" />
-    <Image Include="sprite01.png" />
-    <Image Include="sprite02.png" />
-    <Image Include="sprite03.png" />
-    <Image Include="sprite04.png" />
-    <Image Include="stone01.png" />
     <Image Include="stone01.tga" />
-    <Image Include="wall.png" />
-    <Image Include="wall01.png" />
-    <Image Include="water01.png" />
   </ItemGroup>
   <ItemGroup>
-    <CopyFileToFolders Include="cube.txt" />
     <CopyFileToFolders Include="font01.txt" />
-    <CopyFileToFolders Include="plane.txt" />
-    <CopyFileToFolders Include="bath.txt" />
-    <Text Include="chunk.txt" />
-    <Text Include="sphere.txt" />
-    <CopyFileToFolders Include="sprite_data_01.txt" />
-    <Text Include="square.txt" />
-    <CopyFileToFolders Include="water.txt" />
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="translate.ps">
@@ -275,23 +269,26 @@
     <ResourceCompile Include="resources.rc" />
   </ItemGroup>
   <ItemGroup>
-    <CopyFileToFolders Include="cone.obj">
-      <FileType>Document</FileType>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="isosphere.obj">
-      <FileType>Document</FileType>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="monke.obj">
-      <FileType>Document</FileType>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="vaisseau.obj">
-      <FileType>Document</FileType>
-    </CopyFileToFolders>
+    <Object Include="assets\Model\OBJ\86.obj" />
+    <Object Include="assets\Model\OBJ\cone.obj" />
+    <Object Include="assets\Model\OBJ\isosphere.obj" />
+    <Object Include="assets\Model\OBJ\monke.obj" />
+    <Object Include="assets\Model\OBJ\vaisseau.obj" />
   </ItemGroup>
   <ItemGroup>
-    <CopyFileToFolders Include="86.obj">
-      <FileType>Document</FileType>
+    <CopyFileToFolders Include="assets\Model\TXT\bath.txt" />
+    <CopyFileToFolders Include="assets\Model\TXT\chunk.txt">
+      <FileType>Text</FileType>
     </CopyFileToFolders>
+    <CopyFileToFolders Include="assets\Model\TXT\cube.txt" />
+    <CopyFileToFolders Include="assets\Model\TXT\font01.txt" />
+    <CopyFileToFolders Include="assets\Model\TXT\ground.txt" />
+    <CopyFileToFolders Include="assets\Model\TXT\plane.txt" />
+    <CopyFileToFolders Include="assets\Model\TXT\sphere.txt" />
+    <CopyFileToFolders Include="assets\Model\TXT\sprite_data_01.txt" />
+    <CopyFileToFolders Include="assets\Model\TXT\square.txt" />
+    <CopyFileToFolders Include="assets\Model\TXT\wall.txt" />
+    <CopyFileToFolders Include="assets\Model\TXT\water.txt" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

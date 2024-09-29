@@ -40,6 +40,15 @@
     <Filter Include="Assets\Texture">
       <UniqueIdentifier>{4873a73d-d11c-4d40-b847-b6d7fef4b23d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Assets\Model">
+      <UniqueIdentifier>{3f3824c5-8a66-4f02-9845-1a9538336592}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\Model\OBJ">
+      <UniqueIdentifier>{22651df1-90a4-4a19-8b97-5147b27d975a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\Model\TXT">
+      <UniqueIdentifier>{f67d85e0-106e-47a1-bb9c-a5ea9111509a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -367,74 +376,72 @@
     <Image Include="KhaoticIcon.ico">
       <Filter>Assets</Filter>
     </Image>
-    <Image Include="alpha01.png">
-      <Filter>Assets\Texture</Filter>
-    </Image>
-    <Image Include="dirt01.png">
-      <Filter>Assets\Texture</Filter>
-    </Image>
-    <Image Include="font01.png">
-      <Filter>Assets\Texture</Filter>
-    </Image>
-    <Image Include="ground01.png">
-      <Filter>Assets\Texture</Filter>
-    </Image>
-    <Image Include="light01.png">
-      <Filter>Assets\Texture</Filter>
-    </Image>
-    <Image Include="marble01.png">
-      <Filter>Assets\Texture</Filter>
-    </Image>
-    <Image Include="moss01.png">
-      <Filter>Assets\Texture</Filter>
-    </Image>
-    <Image Include="normal01.png">
-      <Filter>Assets\Texture</Filter>
-    </Image>
-    <Image Include="spec02.png">
-      <Filter>Assets\Texture</Filter>
-    </Image>
-    <Image Include="sprite01.png">
-      <Filter>Assets\Texture</Filter>
-    </Image>
-    <Image Include="sprite02.png">
-      <Filter>Assets\Texture</Filter>
-    </Image>
-    <Image Include="sprite03.png">
-      <Filter>Assets\Texture</Filter>
-    </Image>
-    <Image Include="sprite04.png">
-      <Filter>Assets\Texture</Filter>
-    </Image>
-    <Image Include="stone01.png">
-      <Filter>Assets\Texture</Filter>
-    </Image>
-    <Image Include="wall.png">
-      <Filter>Assets\Texture</Filter>
-    </Image>
-    <Image Include="wall01.png">
-      <Filter>Assets\Texture</Filter>
-    </Image>
-    <Image Include="water01.png">
-      <Filter>Assets\Texture</Filter>
-    </Image>
     <Image Include="stone01.tga">
+      <Filter>Assets\Texture</Filter>
+    </Image>
+    <Image Include="assets\Texture\BricksGLOSS2K.png">
+      <Filter>Assets\Texture</Filter>
+    </Image>
+    <Image Include="assets\Texture\BricksNRM2K.png">
+      <Filter>Assets\Texture</Filter>
+    </Image>
+    <Image Include="assets\Texture\alpha01.png">
+      <Filter>Assets\Texture</Filter>
+    </Image>
+    <Image Include="assets\Texture\Bricks2K.png">
+      <Filter>Assets\Texture</Filter>
+    </Image>
+    <Image Include="assets\Texture\dirt01.png">
+      <Filter>Assets\Texture</Filter>
+    </Image>
+    <Image Include="assets\Texture\font01.png">
+      <Filter>Assets\Texture</Filter>
+    </Image>
+    <Image Include="assets\Texture\ground01.png">
+      <Filter>Assets\Texture</Filter>
+    </Image>
+    <Image Include="assets\Texture\light01.png">
+      <Filter>Assets\Texture</Filter>
+    </Image>
+    <Image Include="assets\Texture\marble01.png">
+      <Filter>Assets\Texture</Filter>
+    </Image>
+    <Image Include="assets\Texture\moss01.png">
+      <Filter>Assets\Texture</Filter>
+    </Image>
+    <Image Include="assets\Texture\normal01.png">
+      <Filter>Assets\Texture</Filter>
+    </Image>
+    <Image Include="assets\Texture\spec02.png">
+      <Filter>Assets\Texture</Filter>
+    </Image>
+    <Image Include="assets\Texture\sprite01.png">
+      <Filter>Assets\Texture</Filter>
+    </Image>
+    <Image Include="assets\Texture\sprite02.png">
+      <Filter>Assets\Texture</Filter>
+    </Image>
+    <Image Include="assets\Texture\sprite03.png">
+      <Filter>Assets\Texture</Filter>
+    </Image>
+    <Image Include="assets\Texture\sprite04.png">
+      <Filter>Assets\Texture</Filter>
+    </Image>
+    <Image Include="assets\Texture\stone01.png">
+      <Filter>Assets\Texture</Filter>
+    </Image>
+    <Image Include="assets\Texture\wall.png">
+      <Filter>Assets\Texture</Filter>
+    </Image>
+    <Image Include="assets\Texture\wall01.png">
+      <Filter>Assets\Texture</Filter>
+    </Image>
+    <Image Include="assets\Texture\water01.png">
       <Filter>Assets\Texture</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="sphere.txt">
-      <Filter>Assets</Filter>
-    </Text>
-    <Text Include="square.txt">
-      <Filter>assets</Filter>
-    </Text>
-    <Text Include="chunk.txt">
-      <Filter>Assets</Filter>
-    </Text>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resources.rc">
@@ -460,19 +467,10 @@
     <CopyFileToFolders Include="font01.tga">
       <Filter>fonts</Filter>
     </CopyFileToFolders>
-    <CopyFileToFolders Include="cube.txt">
-      <Filter>Assets</Filter>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="plane.txt">
-      <Filter>Assets</Filter>
-    </CopyFileToFolders>
     <CopyFileToFolders Include="sprite01.tga">
       <Filter>Assets</Filter>
     </CopyFileToFolders>
     <CopyFileToFolders Include="sprite02.tga">
-      <Filter>Assets</Filter>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="sprite_data_01.txt">
       <Filter>Assets</Filter>
     </CopyFileToFolders>
     <CopyFileToFolders Include="sprite03.tga">
@@ -553,35 +551,61 @@
     <CopyFileToFolders Include="water.vs">
       <Filter>shader</Filter>
     </CopyFileToFolders>
-    <CopyFileToFolders Include="bath.txt">
-      <Filter>Assets</Filter>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="water.txt">
-      <Filter>Assets</Filter>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="isosphere.obj">
-      <Filter>Assets</Filter>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="cone.obj">
-      <Filter>Assets</Filter>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="monke.obj">
-      <Filter>Assets</Filter>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="vaisseau.obj">
-      <Filter>Assets</Filter>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="86.obj">
-      <Filter>Assets</Filter>
-    </CopyFileToFolders>
     <CopyFileToFolders Include="celshading.vs">
       <Filter>shader</Filter>
     </CopyFileToFolders>
     <CopyFileToFolders Include="celshading.ps">
       <Filter>shader</Filter>
     </CopyFileToFolders>
-    <CopyFileToFolders Include="C:\Users\Bacon\Downloads\BricksDragfacedRunning008\Bricks2K.png">
-      <Filter>Assets\Texture</Filter>
+    <CopyFileToFolders Include="assets\Model\TXT\bath.txt">
+      <Filter>Assets\Model\TXT</Filter>
     </CopyFileToFolders>
+    <CopyFileToFolders Include="assets\Model\TXT\chunk.txt">
+      <Filter>Assets\Model\TXT</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="assets\Model\TXT\cube.txt">
+      <Filter>Assets\Model\TXT</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="assets\Model\TXT\font01.txt">
+      <Filter>Assets\Model\TXT</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="assets\Model\TXT\ground.txt">
+      <Filter>Assets\Model\TXT</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="assets\Model\TXT\plane.txt">
+      <Filter>Assets\Model\TXT</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="assets\Model\TXT\sphere.txt">
+      <Filter>Assets\Model\TXT</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="assets\Model\TXT\sprite_data_01.txt">
+      <Filter>Assets\Model\TXT</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="assets\Model\TXT\square.txt">
+      <Filter>Assets\Model\TXT</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="assets\Model\TXT\wall.txt">
+      <Filter>Assets\Model\TXT</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="assets\Model\TXT\water.txt">
+      <Filter>Assets\Model\TXT</Filter>
+    </CopyFileToFolders>
+  </ItemGroup>
+  <ItemGroup>
+    <Object Include="assets\Model\OBJ\cone.obj">
+      <Filter>Assets\Model\OBJ</Filter>
+    </Object>
+    <Object Include="assets\Model\OBJ\isosphere.obj">
+      <Filter>Assets\Model\OBJ</Filter>
+    </Object>
+    <Object Include="assets\Model\OBJ\monke.obj">
+      <Filter>Assets\Model\OBJ</Filter>
+    </Object>
+    <Object Include="assets\Model\OBJ\vaisseau.obj">
+      <Filter>Assets\Model\OBJ</Filter>
+    </Object>
+    <Object Include="assets\Model\OBJ\86.obj">
+      <Filter>Assets\Model\OBJ</Filter>
+    </Object>
   </ItemGroup>
 </Project>
