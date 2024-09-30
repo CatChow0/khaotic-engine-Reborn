@@ -22,11 +22,6 @@
     <ClCompile Include="alphamapshaderclass.cpp" />
     <ClCompile Include="applicationclass.cpp" />
     <ClCompile Include="bitmapclass.cpp" />
-    <ClCompile Include="C:\Users\Bacon\Downloads\DirectXTK-main\DirectXTK-main\Src\DDSTextureLoader.cpp" />
-    <ClCompile Include="C:\Users\Bacon\Downloads\DirectXTK-main\DirectXTK-main\Src\DirectXHelpers.cpp" />
-    <ClCompile Include="C:\Users\Bacon\Downloads\DirectXTK-main\DirectXTK-main\Src\pch.cpp" />
-    <ClCompile Include="C:\Users\Bacon\Downloads\DirectXTK-main\DirectXTK-main\Src\SimpleMath.cpp" />
-    <ClCompile Include="C:\Users\Bacon\Downloads\DirectXTK-main\DirectXTK-main\Src\WICTextureLoader.cpp" />
     <ClCompile Include="Cameraclass.cpp" />
     <ClCompile Include="CelShadingShader.cpp" />
     <ClCompile Include="Colorshaderclass.cpp" />
@@ -44,6 +39,11 @@
     <ClCompile Include="fontshaderclass.cpp" />
     <ClCompile Include="fpsclass.cpp" />
     <ClCompile Include="frustumclass.cpp" />
+    <ClCompile Include="include\Src\DDSTextureLoader.cpp" />
+    <ClCompile Include="include\Src\DirectXHelpers.cpp" />
+    <ClCompile Include="include\Src\pch.cpp" />
+    <ClCompile Include="include\Src\SimpleMath.cpp" />
+    <ClCompile Include="include\Src\WICTextureLoader.cpp" />
     <ClCompile Include="inputclass.cpp" />
     <ClCompile Include="Lightclass.cpp" />
     <ClCompile Include="lightmapshaderclass.cpp" />
@@ -75,11 +75,6 @@
     <ClInclude Include="alphamapshaderclass.h" />
     <ClInclude Include="applicationclass.h" />
     <ClInclude Include="bitmapclass.h" />
-    <ClInclude Include="C:\Users\Bacon\Downloads\DirectXTK-main\DirectXTK-main\Src\CMO.h" />
-    <ClInclude Include="C:\Users\Bacon\Downloads\DirectXTK-main\DirectXTK-main\Src\DDS.h" />
-    <ClInclude Include="C:\Users\Bacon\Downloads\DirectXTK-main\DirectXTK-main\Src\LoaderHelpers.h" />
-    <ClInclude Include="C:\Users\Bacon\Downloads\DirectXTK-main\DirectXTK-main\Src\pch.h" />
-    <ClInclude Include="C:\Users\Bacon\Downloads\DirectXTK-main\DirectXTK-main\Src\PlatformHelpers.h" />
     <ClInclude Include="Cameraclass.h" />
     <ClInclude Include="CelShadingShader.h" />
     <ClInclude Include="Colorshaderclass.h" />
@@ -98,6 +93,11 @@
     <ClInclude Include="fontshaderclass.h" />
     <ClInclude Include="fpsclass.h" />
     <ClInclude Include="frustumclass.h" />
+    <ClInclude Include="include\Src\CMO.h" />
+    <ClInclude Include="include\Src\DDS.h" />
+    <ClInclude Include="include\Src\LoaderHelpers.h" />
+    <ClInclude Include="include\Src\pch.h" />
+    <ClInclude Include="include\Src\PlatformHelpers.h" />
     <ClInclude Include="inputclass.h" />
     <ClInclude Include="lightclass.h" />
     <ClInclude Include="lightmapshaderclass.h" />

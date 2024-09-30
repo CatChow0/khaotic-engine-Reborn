@@ -192,19 +192,19 @@
     <ClCompile Include="CelShadingShader.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\Bacon\Downloads\DirectXTK-main\DirectXTK-main\Src\DDSTextureLoader.cpp">
+    <ClCompile Include="include\Src\DDSTextureLoader.cpp">
       <Filter>Fichiers sources\DirectX  Tool Kit</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\Bacon\Downloads\DirectXTK-main\DirectXTK-main\Src\DirectXHelpers.cpp">
+    <ClCompile Include="include\Src\DirectXHelpers.cpp">
       <Filter>Fichiers sources\DirectX  Tool Kit</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\Bacon\Downloads\DirectXTK-main\DirectXTK-main\Src\pch.cpp">
+    <ClCompile Include="include\Src\pch.cpp">
       <Filter>Fichiers sources\DirectX  Tool Kit</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\Bacon\Downloads\DirectXTK-main\DirectXTK-main\Src\SimpleMath.cpp">
+    <ClCompile Include="include\Src\SimpleMath.cpp">
       <Filter>Fichiers sources\DirectX  Tool Kit</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\Bacon\Downloads\DirectXTK-main\DirectXTK-main\Src\WICTextureLoader.cpp">
+    <ClCompile Include="include\Src\WICTextureLoader.cpp">
       <Filter>Fichiers sources\DirectX  Tool Kit</Filter>
     </ClCompile>
   </ItemGroup>
@@ -356,19 +356,19 @@
     <ClInclude Include="CelShadingShader.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\Bacon\Downloads\DirectXTK-main\DirectXTK-main\Src\PlatformHelpers.h">
+    <ClInclude Include="include\Src\CMO.h">
       <Filter>Fichiers d%27en-tête\DirectX Tool Kit</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\Bacon\Downloads\DirectXTK-main\DirectXTK-main\Src\pch.h">
+    <ClInclude Include="include\Src\DDS.h">
       <Filter>Fichiers d%27en-tête\DirectX Tool Kit</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\Bacon\Downloads\DirectXTK-main\DirectXTK-main\Src\LoaderHelpers.h">
+    <ClInclude Include="include\Src\LoaderHelpers.h">
       <Filter>Fichiers d%27en-tête\DirectX Tool Kit</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\Bacon\Downloads\DirectXTK-main\DirectXTK-main\Src\DDS.h">
+    <ClInclude Include="include\Src\pch.h">
       <Filter>Fichiers d%27en-tête\DirectX Tool Kit</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\Bacon\Downloads\DirectXTK-main\DirectXTK-main\Src\CMO.h">
+    <ClInclude Include="include\Src\PlatformHelpers.h">
       <Filter>Fichiers d%27en-tête\DirectX Tool Kit</Filter>
     </ClInclude>
   </ItemGroup>

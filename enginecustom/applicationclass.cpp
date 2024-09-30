@@ -1127,7 +1127,17 @@ bool ApplicationClass::Render(float rotation, float x, float y, float z, float t
 		object->Render(m_Direct3D->GetDeviceContext());
 
 		if (!m_enableCelShading) {
-			result = m_ShaderManager->RenderlightShader(m_Direct3D->GetDeviceContext(), object->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix, object->GetTexture(0),
+
+			// check if m_object is null or not
+			if (object == nullptr) {
+
+				Logger::Get().Log("Object is null", __FILE__, __LINE__, Logger::LogLevel::Error);
+				return false;
+			}
+
+			ID3D11ShaderResourceView* ObjTexture = object->GetTexture(0);
+			result = m_ShaderManager->RenderlightShader(m_Direct3D->GetDeviceContext(), object->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix, 
+				ObjTexture,
 				diffuseColor, lightPosition, ambientColor);
 
 			if (!result)
@@ -1164,13 +1174,12 @@ bool ApplicationClass::Render(float rotation, float x, float y, float z, float t
 		if (!m_enableCelShading) {
 			if (chunk->GetTexture(0) == nullptr)
 			{
+
 				Logger::Get().Log("Could not render the terrain model using the light shader, texture is null", __FILE__, __LINE__, Logger::LogLevel::Error);
 				return false;
 			}
-
-			result = m_ShaderManager->RenderSpecMapShader(m_Direct3D->GetDeviceContext(), chunk->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix,
-				chunk->GetTexture(0), chunk->GetTexture(1), chunk->GetTexture(2), m_Lights[0]->GetDirection(), m_Lights[0]->GetDiffuseColor(),
-				m_Camera->GetPosition(), m_Lights[0]->GetSpecularColor(), m_Lights[0]->GetSpecularPower());
+			result = m_ShaderManager->RenderlightShader(m_Direct3D->GetDeviceContext(), chunk->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix, chunk->GetTexture(0), diffuseColor, lightPosition, ambientColor );
+			
 			if (!result)
 			{
 				Logger::Get().Log("Could not render the terrain model using the light shader", __FILE__, __LINE__, Logger::LogLevel::Error);
@@ -1661,7 +1670,7 @@ void ApplicationClass::AddKobject(WCHAR* filepath)
 	wcstombs_s(&convertedChars, modelFilename, sizeof(modelFilename), filepath, _TRUNCATE);
 
 
-	/// Liste des fichiers de texture
+	// Liste des fichiers de texture
 	std::vector<std::wstring> kobjTexture = {
 		L"assets/Texture/marble01.png"
 	};
@@ -1674,8 +1683,19 @@ void ApplicationClass::AddKobject(WCHAR* filepath)
 		result = DirectX::CreateWICTextureFromFile(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), textureFilename.c_str(), nullptr, &texture);
 		if (FAILED(result))
 		{
-			Logger::Get().Log("Failed to load texture: " + std::string(textureFilename.begin(), textureFilename.end()), __FILE__, __LINE__, Logger::LogLevel::Error);
-			return;
+			// Utiliser _com_error pour obtenir des informations détaillées sur l'erreur
+			_com_error err(result);
+			LPCTSTR errMsg = err.ErrorMessage();
+
+			//convertie errMessage en std::wstring
+			std::wstring ws(errMsg);
+			std::string str(ws.begin(), ws.end());
+
+			Logger::Get().Log("Failed to load texture: " + std::string(textureFilename.begin(), textureFilename.end()) +
+				"\nError: " + std::to_string(result) +
+				"\nDescription: " + str,
+				__FILE__, __LINE__, Logger::LogLevel::Error);
+			return; // Assurez-vous de retourner false ou de gérer l'erreur de manière appropriée
 		}
 		textures.push_back(texture);
 	}
