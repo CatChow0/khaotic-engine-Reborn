@@ -376,51 +376,6 @@
     <Image Include="KhaoticIcon.ico">
       <Filter>Assets</Filter>
     </Image>
-    <Image Include="assets\Texture\BricksGLOSS2K.png">
-      <Filter>Assets\Texture</Filter>
-    </Image>
-    <Image Include="assets\Texture\BricksNRM2K.png">
-      <Filter>Assets\Texture</Filter>
-    </Image>
-    <Image Include="assets\Texture\alpha01.png">
-      <Filter>Assets\Texture</Filter>
-    </Image>
-    <Image Include="assets\Texture\Bricks2K.png">
-      <Filter>Assets\Texture</Filter>
-    </Image>
-    <Image Include="assets\Texture\dirt01.png">
-      <Filter>Assets\Texture</Filter>
-    </Image>
-    <Image Include="assets\Texture\font01.png">
-      <Filter>Assets\Texture</Filter>
-    </Image>
-    <Image Include="assets\Texture\ground01.png">
-      <Filter>Assets\Texture</Filter>
-    </Image>
-    <Image Include="assets\Texture\light01.png">
-      <Filter>Assets\Texture</Filter>
-    </Image>
-    <Image Include="assets\Texture\marble01.png">
-      <Filter>Assets\Texture</Filter>
-    </Image>
-    <Image Include="assets\Texture\moss01.png">
-      <Filter>Assets\Texture</Filter>
-    </Image>
-    <Image Include="assets\Texture\normal01.png">
-      <Filter>Assets\Texture</Filter>
-    </Image>
-    <Image Include="assets\Texture\spec02.png">
-      <Filter>Assets\Texture</Filter>
-    </Image>
-    <Image Include="assets\Texture\sprite01.png">
-      <Filter>Assets\Texture</Filter>
-    </Image>
-    <Image Include="assets\Texture\sprite02.png">
-      <Filter>Assets\Texture</Filter>
-    </Image>
-    <Image Include="assets\Texture\sprite03.png">
-      <Filter>Assets\Texture</Filter>
-    </Image>
     <Image Include="assets\Texture\sprite04.png">
       <Filter>Assets\Texture</Filter>
     </Image>
@@ -595,6 +550,57 @@
     </CopyFileToFolders>
     <CopyFileToFolders Include="assets\Model\OBJ\86.obj">
       <Filter>Assets\Model\OBJ</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="sprite_data_01.txt">
+      <Filter>Assets</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="assets\Texture\stone01.tga">
+      <Filter>Assets\Texture</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="assets\Texture\alpha01.png">
+      <Filter>Assets\Texture</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="assets\Texture\Bricks2K.png">
+      <Filter>Assets\Texture</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="assets\Texture\BricksGLOSS2K.png">
+      <Filter>Assets\Texture</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="assets\Texture\BricksNRM2K.png">
+      <Filter>Assets\Texture</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="assets\Texture\dirt01.png">
+      <Filter>Assets\Texture</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="assets\Texture\font01.png">
+      <Filter>Assets\Texture</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="assets\Texture\ground01.png">
+      <Filter>Assets\Texture</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="assets\Texture\light01.png">
+      <Filter>Assets\Texture</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="assets\Texture\marble01.png">
+      <Filter>Assets\Texture</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="assets\Texture\moss01.png">
+      <Filter>Assets\Texture</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="assets\Texture\normal01.png">
+      <Filter>Assets\Texture</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="assets\Texture\spec02.png">
+      <Filter>Assets\Texture</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="assets\Texture\sprite01.png">
+      <Filter>Assets\Texture</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="assets\Texture\sprite02.png">
+      <Filter>Assets\Texture</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="assets\Texture\sprite03.png">
+      <Filter>Assets\Texture</Filter>
     </CopyFileToFolders>
   </ItemGroup>
 </Project>
