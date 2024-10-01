@@ -6,6 +6,16 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pScmdline,
 	SystemClass* System;
 	bool result;
 
+	wchar_t path[MAX_PATH];
+	HMODULE hmodule = GetModuleHandle(NULL);
+	if (hmodule != NULL)
+	{
+		GetModuleFileName(hmodule, path, (sizeof(path) / sizeof(wchar_t)));
+	}
+
+	std::filesystem::path exePath(path);
+	std::filesystem::path WFolder = exePath.parent_path();
+
 	// Create the system object.
 	System = new SystemClass;
 
@@ -14,6 +24,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pScmdline,
 	if (result)
 	{
 		Logger::Get().Log("System initialized", __FILE__, __LINE__, Logger::LogLevel::Initialize);
+		System->SendPath(path,WFolder);
 		System->Run();
 	}
 

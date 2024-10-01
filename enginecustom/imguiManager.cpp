@@ -161,10 +161,12 @@ void imguiManager::WidgetObjectWindow(ApplicationClass* app)
 
 			// Texture
 			// add all texture category names to a vector
-			std::vector<std::string> textureCategories = { "Diffuse", "Normal", "Specular", "Alpha", "Light", "Change Me" };
+			std::vector<std::string> textureCategories = { 
+				"Diffuse" 
+			};
 
 
-			for (int count = 0; count < 6; count++)
+			for (int count = 0; count < 1; count++)
 			{
 				std::string textureLabel = "Texture##" + std::to_string(index);
 				ID3D11ShaderResourceView* texture = object->GetTexture(count);
@@ -185,7 +187,7 @@ void imguiManager::WidgetObjectWindow(ApplicationClass* app)
 			}
 
 			// Display all images
-			for (int count = 0; count < 6; count++)
+			for (int count = 0; count < 1; count++)
 			{
 				std::string textureLabel = "Texture##" + std::to_string(index);
 				ID3D11ShaderResourceView* texture = object->GetTexture(count);

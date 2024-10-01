@@ -463,3 +463,9 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT umessage, WPARAM wparam, LPARAM lparam)
 	}
 	}
 }
+
+void SystemClass::SendPath(wchar_t* path, std::filesystem::path WFolder)
+{
+	m_Application->SetPath(path);
+	m_Application->SetWFolder(WFolder);
+}

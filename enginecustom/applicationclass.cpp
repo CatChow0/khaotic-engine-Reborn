@@ -51,6 +51,7 @@ bool ApplicationClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 		char spriteFilename[128];
 		char fpsString[32];
 		bool result;
+		HRESULT Hresult;
 
 		m_screenWidth = screenWidth;
 		m_screenHeight = screenHeight;
@@ -182,8 +183,8 @@ bool ApplicationClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 		for (const auto& textureFilename : textureFilenames)
 		{
 			ID3D11ShaderResourceView* texture = nullptr;
-			result = DirectX::CreateWICTextureFromFile(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), textureFilename.c_str(), nullptr, &texture);
-			if (FAILED(result))
+			Hresult = DirectX::CreateWICTextureFromFile(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), textureFilename.c_str(), nullptr, &texture);
+			if (FAILED(Hresult))
 			{
 				Logger::Get().Log("Failed to load texture: " + std::string(textureFilename.begin(), textureFilename.end()), __FILE__, __LINE__, Logger::LogLevel::Error);
 				return false;
@@ -283,8 +284,8 @@ bool ApplicationClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 		for (const auto& textureFilename : bathTextures)
 		{
 			ID3D11ShaderResourceView* texture = nullptr;
-			result = DirectX::CreateWICTextureFromFile(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), textureFilename.c_str(), nullptr, &texture);
-			if (FAILED(result))
+			Hresult = DirectX::CreateWICTextureFromFile(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), textureFilename.c_str(), nullptr, &texture);
+			if (FAILED(Hresult))
 			{
 				Logger::Get().Log("Failed to load texture: " + std::string(textureFilename.begin(), textureFilename.end()), __FILE__, __LINE__, Logger::LogLevel::Error);
 				return false;
@@ -316,8 +317,8 @@ bool ApplicationClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 		for (const auto& textureFilename : waterTextures)
 		{
 			ID3D11ShaderResourceView* texture = nullptr;
-			result = DirectX::CreateWICTextureFromFile(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), textureFilename.c_str(), nullptr, &texture);
-			if (FAILED(result))
+			Hresult = DirectX::CreateWICTextureFromFile(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), textureFilename.c_str(), nullptr, &texture);
+			if (FAILED(Hresult))
 			{
 				Logger::Get().Log("Failed to load texture: " + std::string(textureFilename.begin(), textureFilename.end()), __FILE__, __LINE__, Logger::LogLevel::Error);
 				return false;
@@ -1661,7 +1662,7 @@ void ApplicationClass::AddKobject(WCHAR* filepath)
 
 	char modelFilename[128];
 	vector<string> Filename;
-	bool result;
+	HRESULT result;
 
 	filesystem::path p(filepath);
 	string filename = p.stem().string();
@@ -1669,10 +1670,11 @@ void ApplicationClass::AddKobject(WCHAR* filepath)
 	size_t convertedChars = 0;
 	wcstombs_s(&convertedChars, modelFilename, sizeof(modelFilename), filepath, _TRUNCATE);
 
+	filesystem::current_path(m_WFolder);
 
 	// Liste des fichiers de texture
 	std::vector<std::wstring> kobjTexture = {
-		L"assets/Texture/marble01.png"
+		L"assets/Texture/Bricks2K.png"
 	};
 
 
@@ -1691,6 +1693,10 @@ void ApplicationClass::AddKobject(WCHAR* filepath)
 			std::wstring ws(errMsg);
 			std::string str(ws.begin(), ws.end());
 
+			// Log the current working directory
+			std::filesystem::path cwd = std::filesystem::current_path();
+			Logger::Get().Log("Current working directory: " + cwd.string(), __FILE__, __LINE__, Logger::LogLevel::Error);
+
 			Logger::Get().Log("Failed to load texture: " + std::string(textureFilename.begin(), textureFilename.end()) +
 				"\nError: " + std::to_string(result) +
 				"\nDescription: " + str,
@@ -1699,7 +1705,6 @@ void ApplicationClass::AddKobject(WCHAR* filepath)
 		}
 		textures.push_back(texture);
 	}
-
 
 	Object* newObject = new Object();
 	newObject->Initialize(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), modelFilename, textures);
@@ -1711,6 +1716,12 @@ void ApplicationClass::AddKobject(WCHAR* filepath)
 	m_ObjectId++;
 
 	m_object.push_back(newObject);
+
+	// Vérifiez que l'objet a bien reçu les textures
+	if (newObject->GetTexture(0) == nullptr)
+	{
+		Logger::Get().Log("Object texture is null after initialization", __FILE__, __LINE__, Logger::LogLevel::Error);
+	}
 }
 
 void ApplicationClass::AddCube()
@@ -1719,7 +1730,7 @@ void ApplicationClass::AddCube()
 	Logger::Get().Log("Adding cube", __FILE__, __LINE__);
 
 	char modelFilename[128];
-	bool result;
+	HRESULT result;
 
 	// Set the file name of the model.
 	strcpy_s(modelFilename, "assets/Model/TXT/cube.txt");
@@ -1751,6 +1762,7 @@ void ApplicationClass::AddCube()
 	newCube->SetTranslateMatrix(XMMatrixTranslation(position, 0.0f, 0.0f));
 
 	m_cubes.push_back(newCube);
+
 }
 
 void ApplicationClass::DeleteKobject(int index)

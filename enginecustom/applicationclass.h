@@ -72,6 +72,8 @@ public:
 	std::vector<Object*> GetTerrainCubes() const { return m_terrainChunk; };
 	std::vector<Object*> GetKobjects() const { return m_object; };
 	void AddKobject(WCHAR* filepath);
+	void SetPath(WCHAR* path) { m_path = path; };
+	void SetWFolder(std::filesystem::path WFolder) { m_WFolder = WFolder; };
 
 	void GenerateTerrain();
 	void DeleteTerrain();
@@ -160,6 +162,8 @@ private :
 	// ----------------------------------- //
 
 	float m_waterHeight, m_waterTranslation;
+	wchar_t* m_path;
+	std::filesystem::path m_WFolder;
 
 	// ------------------------------------------------- //
 	// ------------- FPS AND INFO ON SCREEN ------------ //

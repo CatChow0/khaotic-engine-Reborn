@@ -24,6 +24,8 @@ public:
 
 	LRESULT CALLBACK MessageHandler(HWND, UINT, WPARAM, LPARAM);
 
+	void SendPath(wchar_t* path, std::filesystem::path WFolder);
+
 private:
 	bool Frame();
 	void InitializeWindows(int&, int&);

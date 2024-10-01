@@ -84,7 +84,6 @@ ID3D11ShaderResourceView* ModelClass::GetTexture(int index) const {
 	return nullptr; // Retourne nullptr si l'index est hors limites
 }
 
-
 bool ModelClass::InitializeBuffers(ID3D11Device* device)
 {
 	Logger::Get().Log("Initializing buffers", __FILE__, __LINE__, Logger::LogLevel::Initialize);
