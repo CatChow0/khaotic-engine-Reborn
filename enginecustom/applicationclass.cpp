@@ -910,9 +910,9 @@ bool ApplicationClass::RenderRefractionToTexture()
 	m_Camera->Render();
 
 	// Get the world, view, and projection matrices from the camera and d3d objects.
-	m_Direct3D->GetWorldMatrix(worldMatrix);
+	worldMatrix = m_Direct3D->GetWorldMatrix();
 	m_Camera->GetViewMatrix(viewMatrix);
-	m_Direct3D->GetProjectionMatrix(projectionMatrix);
+	projectionMatrix = m_Direct3D->GetProjectionMatrix();
 
 	// Get the light properties.
 	for (i = 0; i < m_numLights; i++)
@@ -965,8 +965,8 @@ bool ApplicationClass::RenderReflectionToTexture()
 	m_Camera->GetReflectionViewMatrix(reflectionViewMatrix);
 
 	// Get the world and projection matrices from the d3d object.
-	m_Direct3D->GetWorldMatrix(worldMatrix);
-	m_Direct3D->GetProjectionMatrix(projectionMatrix);
+	worldMatrix = m_Direct3D->GetWorldMatrix();
+	projectionMatrix = m_Direct3D->GetProjectionMatrix();
 
 
 	// Reset the render target back to the original back buffer and not the render to texture anymore.  And reset the viewport back to the original.
@@ -989,7 +989,7 @@ bool ApplicationClass::RenderSceneToTexture(float rotation)
 	m_Camera->Render();
 
 	// Get the matrices.
-	m_Direct3D->GetWorldMatrix(worldMatrix);
+	worldMatrix = m_Direct3D->GetWorldMatrix();
 	m_Camera->GetViewMatrix(viewMatrix);
 	m_RenderTexture->GetProjectionMatrix(projectionMatrix);
 
@@ -1030,10 +1030,10 @@ bool ApplicationClass::Render(float rotation, float x, float y, float z, float t
 	
 
 	// Get the world, view, and projection matrices from the camera and d3d objects.
-	m_Direct3D->GetWorldMatrix(worldMatrix);
+	worldMatrix = m_Direct3D->GetWorldMatrix();
 	m_Camera->GetViewMatrix(viewMatrix);
-	m_Direct3D->GetProjectionMatrix(projectionMatrix);
-	m_Direct3D->GetOrthoMatrix(orthoMatrix);
+	projectionMatrix = m_Direct3D->GetProjectionMatrix();
+	orthoMatrix = m_Direct3D->GetOrthoMatrix();
 
 	// Get the light properties.
 	for (i = 0; i < m_numLights; i++)
@@ -1122,8 +1122,8 @@ bool ApplicationClass::Render(float rotation, float x, float y, float z, float t
 			rotateMatrix = object->GetRotateMatrix();
 		}
 		translateMatrix = object->GetTranslateMatrix();
-		srMatrix = XMMatrixMultiply(scaleMatrix, rotateMatrix);
-		worldMatrix = XMMatrixMultiply(srMatrix, translateMatrix);
+		worldMatrix = m_Direct3D->GetWorldMatrix();
+		
 
 		object->Render(m_Direct3D->GetDeviceContext());
 
@@ -1216,7 +1216,7 @@ bool ApplicationClass::Render(float rotation, float x, float y, float z, float t
 	}
 
 	// Reset the world matrix.
-	m_Direct3D->GetWorldMatrix(worldMatrix);
+	worldMatrix = m_Direct3D->GetWorldMatrix();
 
 	// Get the camera reflection view matrix.
 	m_Camera->GetReflectionViewMatrix(reflectionMatrix);
@@ -1334,7 +1334,7 @@ bool ApplicationClass::Render(float rotation, float x, float y, float z, float t
 	m_Direct3D->EnableAlphaBlending();
 
 	// Reset the world matrix.
-	m_Direct3D->GetWorldMatrix(worldMatrix);
+	worldMatrix = m_Direct3D->GetWorldMatrix();
 
 	// Render the render count text string using the font shader.
 	m_RenderCountString->Render(m_Direct3D->GetDeviceContext());
@@ -1635,16 +1635,16 @@ void ApplicationClass::GenerateTerrain()
 
 
 	// for loop to generate terrain chunks for a 10x10 grid
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < 20; i++)
 	{
-		for (int j = 0; j < 10; j++)
+		for (int j = 0; j < 20; j++)
 		{
 			Object* newTerrain = new Object();
 			newTerrain->Initialize(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), modelFilename, textures);
 
 			newTerrain->SetScaleMatrix(scaleMatrix);
 
-			newTerrain->SetTranslateMatrix(XMMatrixTranslation(i / 2 * (scaleX * 2), -12.0f, j * (scaleZ * 2)));
+			newTerrain->SetTranslateMatrix(XMMatrixTranslation(i / 2 * scaleX, -12.0f, j * scaleZ));
 
 			newTerrain->SetName(filenameWithoutExtension);
 

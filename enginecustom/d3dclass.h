@@ -42,14 +42,14 @@ public:
 
 	ID3D11Device* GetDevice();
 	ID3D11DeviceContext* GetDeviceContext();
-	XMMATRIX GetProjectionMatrix(XMMATRIX& projectionMatrix);
+	//XMMATRIX GetProjectionMatrix(XMMATRIX& projectionMatrix);
 	IDXGISwapChain* m_swapChain;
 	IDXGISwapChain* GetSwapChain();
 	void ResizeSwapChain(int, int);
 
-	XMMATRIX GetProjectionMatrix();
-	void GetWorldMatrix(XMMATRIX&);
-	void GetOrthoMatrix(XMMATRIX&);
+	XMMATRIX GetProjectionMatrix() const { return m_projectionMatrix; };
+	XMMATRIX GetWorldMatrix() const { return m_worldMatrix;};
+	XMMATRIX GetOrthoMatrix() const { return m_orthoMatrix; };
 
 	void GetVideoCardInfo(char*, int&);
 
