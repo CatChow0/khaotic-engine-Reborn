@@ -1591,7 +1591,7 @@ void ApplicationClass::GenerateTerrain()
 	scaleMatrix = XMMatrixScaling(scaleX, scaleY, scaleZ);
 
 	// Set the file name of the model.
-	strcpy_s(modelFilename, "assets/Model/TXT/plane.txt");
+	strcpy_s(modelFilename, "assets/Model/OBJ/plane.obj");
 
 	// Liste des fichiers de texture
 	std::vector<std::wstring> terrainTexture = {

@@ -365,6 +365,12 @@
   <ItemGroup>
     <CopyFileToFolders Include="sprite_data_01.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <CopyFileToFolders Include="assets\Model\OBJ\plane.obj">
+      <FileType>Document</FileType>
+      <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)\assets\Model\OBJ\</DestinationFolders>
+    </CopyFileToFolders>
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>

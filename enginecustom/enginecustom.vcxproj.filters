@@ -376,21 +376,6 @@
     <Image Include="KhaoticIcon.ico">
       <Filter>Assets</Filter>
     </Image>
-    <Image Include="assets\Texture\sprite04.png">
-      <Filter>Assets\Texture</Filter>
-    </Image>
-    <Image Include="assets\Texture\stone01.png">
-      <Filter>Assets\Texture</Filter>
-    </Image>
-    <Image Include="assets\Texture\wall.png">
-      <Filter>Assets\Texture</Filter>
-    </Image>
-    <Image Include="assets\Texture\wall01.png">
-      <Filter>Assets\Texture</Filter>
-    </Image>
-    <Image Include="assets\Texture\water01.png">
-      <Filter>Assets\Texture</Filter>
-    </Image>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -601,6 +586,24 @@
     </CopyFileToFolders>
     <CopyFileToFolders Include="assets\Texture\sprite03.png">
       <Filter>Assets\Texture</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="assets\Texture\sprite04.png">
+      <Filter>Fichiers de ressources</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="assets\Texture\stone01.png">
+      <Filter>Fichiers de ressources</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="assets\Texture\wall.png">
+      <Filter>Fichiers de ressources</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="assets\Texture\wall01.png">
+      <Filter>Fichiers de ressources</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="assets\Texture\water01.png">
+      <Filter>Fichiers de ressources</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="assets\Model\OBJ\plane.obj">
+      <Filter>Assets\Model\OBJ</Filter>
     </CopyFileToFolders>
   </ItemGroup>
 </Project>
