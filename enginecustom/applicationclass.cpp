@@ -1122,7 +1122,8 @@ bool ApplicationClass::Render(float rotation, float x, float y, float z, float t
 			rotateMatrix = object->GetRotateMatrix();
 		}
 		translateMatrix = object->GetTranslateMatrix();
-		worldMatrix = m_Direct3D->GetWorldMatrix();
+		srMatrix = XMMatrixMultiply(scaleMatrix, rotateMatrix);
+		worldMatrix = XMMatrixMultiply(srMatrix, translateMatrix);
 		
 
 		object->Render(m_Direct3D->GetDeviceContext());
@@ -1136,11 +1137,8 @@ bool ApplicationClass::Render(float rotation, float x, float y, float z, float t
 				return false;
 			}
 
-			ID3D11ShaderResourceView* ObjTexture = object->GetTexture(0);
 			result = m_ShaderManager->RenderlightShader(m_Direct3D->GetDeviceContext(), object->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix, 
-				ObjTexture,
-				diffuseColor, lightPosition, ambientColor);
-
+				object->GetTexture(0), diffuseColor, lightPosition, ambientColor);
 			if (!result)
 			{
 				Logger::Get().Log("Could not render the object model using the light shader", __FILE__, __LINE__, Logger::LogLevel::Error);
@@ -1644,7 +1642,7 @@ void ApplicationClass::GenerateTerrain()
 
 			newTerrain->SetScaleMatrix(scaleMatrix);
 
-			newTerrain->SetTranslateMatrix(XMMatrixTranslation(i / 2 * scaleX, -12.0f, j * scaleZ));
+			newTerrain->SetTranslateMatrix(XMMatrixTranslation(i / 2 * scaleX , -12.0f, j * scaleZ));
 
 			newTerrain->SetName(filenameWithoutExtension);
 

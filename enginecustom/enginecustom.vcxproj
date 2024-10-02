@@ -227,48 +227,63 @@
     <CopyFileToFolders Include="font01.tga" />
     <CopyFileToFolders Include="assets\Texture\alpha01.png">
       <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)\assets\Texture\</DestinationFolders>
+      <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)\assets\Texture\</DestinationFolders>
     </CopyFileToFolders>
     <CopyFileToFolders Include="assets\Texture\Bricks2K.png">
       <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)\assets\Texture\</DestinationFolders>
+      <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)\assets\Texture\</DestinationFolders>
     </CopyFileToFolders>
     <CopyFileToFolders Include="assets\Texture\BricksGLOSS2K.png">
       <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)\assets\Texture\</DestinationFolders>
+      <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)\assets\Texture\</DestinationFolders>
     </CopyFileToFolders>
     <CopyFileToFolders Include="assets\Texture\BricksNRM2K.png">
       <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)\assets\Texture\</DestinationFolders>
+      <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)\assets\Texture\</DestinationFolders>
     </CopyFileToFolders>
     <CopyFileToFolders Include="assets\Texture\dirt01.png">
       <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)\assets\Texture\</DestinationFolders>
+      <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)\assets\Texture\</DestinationFolders>
     </CopyFileToFolders>
     <CopyFileToFolders Include="assets\Texture\font01.png">
       <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)\assets\Texture\</DestinationFolders>
+      <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)\assets\Texture\</DestinationFolders>
     </CopyFileToFolders>
     <CopyFileToFolders Include="assets\Texture\ground01.png">
       <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)\assets\Texture\</DestinationFolders>
+      <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)\assets\Texture\</DestinationFolders>
     </CopyFileToFolders>
     <CopyFileToFolders Include="assets\Texture\light01.png">
       <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)\assets\Texture\</DestinationFolders>
+      <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)\assets\Texture\</DestinationFolders>
     </CopyFileToFolders>
     <CopyFileToFolders Include="assets\Texture\marble01.png">
       <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)\assets\Texture\</DestinationFolders>
+      <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)\assets\Texture\</DestinationFolders>
     </CopyFileToFolders>
     <CopyFileToFolders Include="assets\Texture\moss01.png">
       <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)\assets\Texture\</DestinationFolders>
+      <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)\assets\Texture\</DestinationFolders>
     </CopyFileToFolders>
     <CopyFileToFolders Include="assets\Texture\normal01.png">
       <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)\assets\Texture\</DestinationFolders>
+      <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)\assets\Texture\</DestinationFolders>
     </CopyFileToFolders>
     <CopyFileToFolders Include="assets\Texture\spec02.png">
       <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)\assets\Texture\</DestinationFolders>
+      <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)\assets\Texture\</DestinationFolders>
     </CopyFileToFolders>
     <CopyFileToFolders Include="assets\Texture\sprite01.png">
       <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)\assets\Texture\</DestinationFolders>
+      <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)\assets\Texture\</DestinationFolders>
     </CopyFileToFolders>
     <CopyFileToFolders Include="assets\Texture\sprite02.png">
       <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)\assets\Texture\</DestinationFolders>
+      <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)\assets\Texture\</DestinationFolders>
     </CopyFileToFolders>
     <CopyFileToFolders Include="assets\Texture\sprite03.png">
       <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)\assets\Texture\</DestinationFolders>
+      <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)\assets\Texture\</DestinationFolders>
     </CopyFileToFolders>
     <CopyFileToFolders Include="assets\Texture\sprite04.png">
       <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)\assets\Texture\</DestinationFolders>
@@ -278,6 +293,7 @@
     </CopyFileToFolders>
     <CopyFileToFolders Include="assets\Texture\stone01.tga">
       <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)\assets\Texture\</DestinationFolders>
+      <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)\assets\Texture\</DestinationFolders>
     </CopyFileToFolders>
     <CopyFileToFolders Include="assets\Texture\wall.png">
       <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)\assets\Texture\</DestinationFolders>
@@ -314,52 +330,66 @@
     <CopyFileToFolders Include="assets\Model\OBJ\86.obj">
       <FileType>Document</FileType>
       <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)\assets\Model\OBJ\</DestinationFolders>
+      <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)\assets\Model\OBJ\</DestinationFolders>
     </CopyFileToFolders>
     <CopyFileToFolders Include="assets\Model\OBJ\cone.obj">
       <FileType>Document</FileType>
       <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)\assets\Model\OBJ\</DestinationFolders>
+      <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)\assets\Model\OBJ\</DestinationFolders>
     </CopyFileToFolders>
     <CopyFileToFolders Include="assets\Model\OBJ\isosphere.obj">
       <FileType>Document</FileType>
       <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)\assets\Model\OBJ\</DestinationFolders>
+      <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)\assets\Model\OBJ\</DestinationFolders>
     </CopyFileToFolders>
     <CopyFileToFolders Include="assets\Model\OBJ\monke.obj">
       <FileType>Document</FileType>
       <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)\assets\Model\OBJ\</DestinationFolders>
+      <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)\assets\Model\OBJ\</DestinationFolders>
     </CopyFileToFolders>
     <CopyFileToFolders Include="assets\Model\OBJ\vaisseau.obj">
       <FileType>Document</FileType>
       <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)\assets\Model\OBJ\</DestinationFolders>
+      <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)\assets\Model\OBJ\</DestinationFolders>
     </CopyFileToFolders>
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="assets\Model\TXT\bath.txt">
       <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)\assets\Model\TXT\</DestinationFolders>
+      <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)\assets\Model\TXT\</DestinationFolders>
     </CopyFileToFolders>
     <CopyFileToFolders Include="assets\Model\TXT\chunk.txt">
       <FileType>Text</FileType>
       <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)\assets\Model\TXT\</DestinationFolders>
+      <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)\assets\Model\TXT\</DestinationFolders>
     </CopyFileToFolders>
     <CopyFileToFolders Include="assets\Model\TXT\cube.txt">
       <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)\assets\Model\TXT\</DestinationFolders>
+      <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)\assets\Model\TXT\</DestinationFolders>
     </CopyFileToFolders>
     <CopyFileToFolders Include="assets\Model\TXT\ground.txt">
       <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)\assets\Model\TXT\</DestinationFolders>
+      <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)\assets\Model\TXT\</DestinationFolders>
     </CopyFileToFolders>
     <CopyFileToFolders Include="assets\Model\TXT\plane.txt">
       <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)\assets\Model\TXT\</DestinationFolders>
+      <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)\assets\Model\TXT\</DestinationFolders>
     </CopyFileToFolders>
     <CopyFileToFolders Include="assets\Model\TXT\sphere.txt">
       <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)\assets\Model\TXT\</DestinationFolders>
+      <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)\assets\Model\TXT\</DestinationFolders>
     </CopyFileToFolders>
     <CopyFileToFolders Include="assets\Model\TXT\square.txt">
       <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)\assets\Model\TXT\</DestinationFolders>
+      <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)\assets\Model\TXT\</DestinationFolders>
     </CopyFileToFolders>
     <CopyFileToFolders Include="assets\Model\TXT\wall.txt">
       <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)\assets\Model\TXT\</DestinationFolders>
+      <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)\assets\Model\TXT\</DestinationFolders>
     </CopyFileToFolders>
     <CopyFileToFolders Include="assets\Model\TXT\water.txt">
       <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)\assets\Model\TXT\</DestinationFolders>
+      <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)\assets\Model\TXT\</DestinationFolders>
     </CopyFileToFolders>
   </ItemGroup>
   <ItemGroup>
@@ -369,6 +399,7 @@
     <CopyFileToFolders Include="assets\Model\OBJ\plane.obj">
       <FileType>Document</FileType>
       <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)\assets\Model\OBJ\</DestinationFolders>
+      <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)\assets\Model\OBJ\</DestinationFolders>
     </CopyFileToFolders>
   </ItemGroup>
   <PropertyGroup Label="Globals">
