@@ -695,7 +695,8 @@ IDXGISwapChain* D3DClass::GetSwapChain()
 void D3DClass::ResizeSwapChain(int newWidth, int newHeight)
 {
 
-	Logger::Get().Log("Resizing swap chain", __FILE__, __LINE__);
+	// log the new width and height
+	Logger::Get().Log("Resizing swap chain to " + std::to_string(newWidth) + "x" + std::to_string(newHeight), __FILE__, __LINE__);
 
 	HRESULT result;
 
@@ -765,4 +766,9 @@ void D3DClass::DisableAlphaBlending()
 	m_deviceContext->OMSetBlendState(m_alphaDisableBlendingState, blendFactor, 0xffffffff);
 
 	return;
+}
+
+void D3DClass::SetVsync(bool vsync)
+{
+	m_vsync_enabled = vsync;
 }

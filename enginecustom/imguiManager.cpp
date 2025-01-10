@@ -318,6 +318,11 @@ bool imguiManager::ImGuiWidgetRenderer(ApplicationClass* app)
 		showShaderWindow = true;
 	}
 
+	if (ImGui::Button("Open Engine Settings Window"))
+	{
+		showEngineSettingsWindow = true;
+	}
+
 	ImGui::End();
 
 	// Show windows if their corresponding variables are true
@@ -339,6 +344,11 @@ bool imguiManager::ImGuiWidgetRenderer(ApplicationClass* app)
 	if (showShaderWindow)
 	{
 		WidgetShaderWindow(app);
+	}
+
+	if (showEngineSettingsWindow)
+	{
+		WidgetEngineSettingsWindow(app);
 	}
 
 	//render imgui
@@ -378,6 +388,20 @@ void imguiManager::WidgetLightWindow(ApplicationClass* app)
 		}
 		index++;
 	};
+
+	ImGui::End();
+}
+
+void imguiManager::WidgetEngineSettingsWindow(ApplicationClass* app)
+{
+	ImGui::Begin("Engine Settings", &showEngineSettingsWindow);
+
+	// Checkbox for toggling vsync globally in the application class by calling the SetVsync function in the application class when the checkbox state changes
+	bool vsync = app->GetVsync();
+	if (ImGui::Checkbox("Vsync", &vsync))
+	{
+		app->SetVsync(vsync);
+	}
 
 	ImGui::End();
 }

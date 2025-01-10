@@ -38,7 +38,6 @@
 // GLOBALS //
 /////////////
 const bool FULL_SCREEN = false;
-const bool VSYNC_ENABLED = false;
 const float SCREEN_DEPTH = 1000.0f;
 const float SCREEN_NEAR = 0.3f;
 
@@ -59,7 +58,9 @@ public:
 	bool Frame(InputClass*);
 
 	int GetScreenWidth() const;
+	void SetScreenWidth(int screenWidth);
 	int GetScreenHeight() const;
+	void SetScreenHeight(int screenHeight);
 
 	float GetSpeed() const { return m_speed; };
 	void SetSpeed(float speed) { this->m_speed = speed; };
@@ -92,6 +93,15 @@ public:
 
 	std::vector<ID3D11ShaderResourceView*> textures;
 
+	void SetVsync(bool vsync);
+	bool GetVsync() const { return VSYNC_ENABLED; };
+
+	HWND GetHwnd() const;
+	void SetHwnd(HWND hwnd);
+
+	bool IsWindowed() const;
+	void SetWindowed(bool windowed);
+
 private:
 	bool Render(float, float, float, float, float);
 	bool UpdateMouseStrings(int, int, bool);
@@ -111,6 +121,10 @@ private :
 	IDXGISwapChain* m_swapChain;
 	ModelClass* m_Model,* m_GroundModel, * m_WallModel, * m_BathModel, * m_WaterModel;
 	ModelListClass* m_ModelList;
+	bool VSYNC_ENABLED = true;
+
+	HWND m_hwnd;
+	bool m_windowed;
 
 	// ------------------------------------- //
 	// ------------- RENDERING ------------- //

@@ -46,6 +46,8 @@ public:
 	IDXGISwapChain* m_swapChain;
 	IDXGISwapChain* GetSwapChain();
 	void ResizeSwapChain(int, int);
+	void SetVsync(bool vsync);
+
 
 	XMMATRIX GetProjectionMatrix() const { return m_projectionMatrix; };
 	XMMATRIX GetWorldMatrix() const { return m_worldMatrix;};

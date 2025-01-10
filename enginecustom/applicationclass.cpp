@@ -56,6 +56,11 @@ bool ApplicationClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 		m_screenWidth = screenWidth;
 		m_screenHeight = screenHeight;
 
+		SetHwnd(hwnd);
+		SetWindowed(FULL_SCREEN);
+		SetScreenHeight(screenHeight);
+		SetScreenWidth(screenWidth);
+
 		// Create the Direct3D object.
 		m_Direct3D = new D3DClass;
 		if (!m_Direct3D)
@@ -1974,4 +1979,51 @@ void ApplicationClass::SetLightPosition(int index, XMVECTOR position)
 
 	//set the position
 	m_Lights[index]->SetPosition(lightPosition.x, lightPosition.y, lightPosition.z);
+}
+
+void ApplicationClass::SetVsync(bool vsync)
+{
+	VSYNC_ENABLED = vsync;
+
+	if (m_Direct3D)
+	{
+		Logger::Get().Log("Setting Vsync to " + std::to_string(vsync) + " with a screen width : " + std::to_string(GetScreenWidth()) + "and a screen height : " + std::to_string(GetScreenHeight()), __FILE__, __LINE__);
+		m_Direct3D->SetVsync(vsync);
+	}
+}
+
+HWND ApplicationClass::GetHwnd() const
+{
+	return m_hwnd;
+}
+
+void ApplicationClass::SetHwnd(HWND hwnd)
+{
+	m_hwnd = hwnd;
+}
+
+bool ApplicationClass::IsWindowed() const
+{
+	return m_windowed;
+}
+
+void ApplicationClass::SetWindowed(bool windowed)
+{
+	// log the new windowed mode
+	Logger::Get().Log("Setting windowed mode to " + std::to_string(windowed), __FILE__, __LINE__);
+	m_windowed = windowed;
+}
+
+void ApplicationClass::SetScreenHeight(int height)
+{
+	// log the new screen height
+	Logger::Get().Log("Setting screen height to " + std::to_string(height), __FILE__, __LINE__);
+	m_screenHeight = height;
+}
+
+void ApplicationClass::SetScreenWidth(int width)
+{
+	// log the new screen width
+	Logger::Get().Log("Setting screen width to " + std::to_string(width), __FILE__, __LINE__);
+	m_screenWidth = width;
 }

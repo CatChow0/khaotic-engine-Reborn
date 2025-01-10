@@ -257,6 +257,8 @@ LRESULT CALLBACK SystemClass::MessageHandler(HWND hwnd, UINT umsg, WPARAM wparam
 			//  If Direct3D is initialized, update the swap chain. Otherwise, store the window dimensions
 			if (m_isDirect3DInitialized && m_Application && m_Application->GetDirect3D())
 			{
+				m_Application->SetScreenWidth(newWidth);
+				m_Application->SetScreenHeight(newHeight);
 				m_Application->GetDirect3D()->ResizeSwapChain(newWidth, newHeight);
 			}
 			else

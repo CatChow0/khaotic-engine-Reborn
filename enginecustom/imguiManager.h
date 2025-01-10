@@ -32,6 +32,7 @@ public:
 	void WidgetTerrainWindow(ApplicationClass* app);
 	void WidgetLightWindow(ApplicationClass* app);
 	void WidgetShaderWindow(ApplicationClass* app);
+	void WidgetEngineSettingsWindow(ApplicationClass* app);
 
 	bool ImGuiWidgetRenderer(ApplicationClass* app);
 
@@ -44,6 +45,7 @@ private :
 	bool showTerrainWindow = false;
 	bool showLightWindow = false;
 	bool showShaderWindow = false;
+	bool showEngineSettingsWindow = false;
 
 private:
 	ImGuiIO* io;
