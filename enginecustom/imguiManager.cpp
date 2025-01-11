@@ -162,7 +162,11 @@ void imguiManager::WidgetObjectWindow(ApplicationClass* app)
 			// Texture
 			// add all texture category names to a vector
 			std::vector<std::string> textureCategories = { 
-				"Diffuse" 
+				"Diffuse",
+				"Normal",
+				"Specular",
+				"Reflection",
+				"Refraction"
 			};
 
 
@@ -245,6 +249,34 @@ void imguiManager::WidgetObjectWindow(ApplicationClass* app)
 			{
 				app->DeleteKobject(index);
 			}
+
+			// Shader selection
+			std::string shaderLabel = "Shader##" + std::to_string(index);
+
+			// Radio buttons for shader options
+			Object::ShaderType activeShader = object->GetActiveShader();
+			
+			if (ImGui::RadioButton("Enable Lighting", activeShader == Object::LIGHTING))
+			{
+				object->SetActiveShader(Object::LIGHTING);
+			}
+			
+			if (ImGui::RadioButton("Enable Cel Shading", activeShader == Object::CEL_SHADING))
+			{
+				object->SetActiveShader(Object::CEL_SHADING);
+			}
+			
+			if (ImGui::RadioButton("Enable Normal Mapping", activeShader == Object::NORMAL_MAPPING))
+			{
+				object->SetActiveShader(Object::NORMAL_MAPPING);
+			}
+
+			if (ImGui::RadioButton("Enable Specular Mapping", activeShader == Object::SPECULAR_MAPPING))
+			{
+				object->SetActiveShader(Object::SPECULAR_MAPPING);
+			}
+			
+
 
 			ImGui::Separator();
 

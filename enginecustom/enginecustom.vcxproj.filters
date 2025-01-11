@@ -388,6 +388,9 @@
     <Image Include="KhaoticIcon.ico">
       <Filter>Assets</Filter>
     </Image>
+    <Image Include="assets\Texture\EmptyTexture.png">
+      <Filter>Assets\Texture</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

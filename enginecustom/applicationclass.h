@@ -113,7 +113,7 @@ private:
 	bool RenderSceneToTexture(float);
 	bool RenderRefractionToTexture();
 	bool RenderReflectionToTexture();
-	bool RenderPass(std::vector<Object*> RenderQueue, XMFLOAT4* diffuse,XMFLOAT4* position, XMFLOAT4* ambient, XMMATRIX view, XMMATRIX proijection);
+	bool RenderPass(const std::vector<std::reference_wrapper<std::vector<Object*>>>& RenderQueues, XMFLOAT4* diffuse, XMFLOAT4* position, XMFLOAT4* ambient, XMMATRIX view, XMMATRIX projection);
 
 private :
 
@@ -152,6 +152,7 @@ private :
 	float m_speed = 0.1f; // speed for the demo spinning object
 	std::vector<Object*> m_object;
 	int m_ObjectId = 0;
+	std::vector<std::reference_wrapper<std::vector<Object*>>> m_RenderQueues;
 
 	// ----------------------------------- //
 	// ------------- LIGHTS -------------- //

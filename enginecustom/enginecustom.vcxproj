@@ -304,6 +304,7 @@
     <CopyFileToFolders Include="assets\Texture\water01.png">
       <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)\assets\Texture\</DestinationFolders>
     </CopyFileToFolders>
+    <Image Include="assets\Texture\EmptyTexture.png" />
     <Image Include="KhaoticIcon.ico" />
     <CopyFileToFolders Include="sprite01.tga" />
     <CopyFileToFolders Include="sprite02.tga" />
