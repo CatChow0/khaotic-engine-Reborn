@@ -26,6 +26,7 @@
     <ClCompile Include="CelShadingShader.cpp" />
     <ClCompile Include="Colorshaderclass.cpp" />
     <ClCompile Include="d3dclass.cpp" />
+    <ClCompile Include="frustum.cpp" />
     <ClCompile Include="imguiManager.cpp" />
     <ClCompile Include="include\backends\imgui_impl_dx11.cpp" />
     <ClCompile Include="include\backends\imgui_impl_win32.cpp" />
@@ -79,6 +80,7 @@
     <ClInclude Include="CelShadingShader.h" />
     <ClInclude Include="Colorshaderclass.h" />
     <ClInclude Include="d3dclass.h" />
+    <ClInclude Include="frustum.h" />
     <ClInclude Include="imguiManager.h" />
     <ClInclude Include="include\backends\imgui_impl_dx11.h" />
     <ClInclude Include="include\backends\imgui_impl_win32.h" />
@@ -304,7 +306,10 @@
     <CopyFileToFolders Include="assets\Texture\water01.png">
       <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)\assets\Texture\</DestinationFolders>
     </CopyFileToFolders>
-    <Image Include="assets\Texture\EmptyTexture.png" />
+    <CopyFileToFolders Include="assets\Texture\EmptyTexture.png">
+      <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)\assets\Texture\</DestinationFolders>
+      <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)\assets\Texture\</DestinationFolders>
+    </CopyFileToFolders>
     <Image Include="KhaoticIcon.ico" />
     <CopyFileToFolders Include="sprite01.tga" />
     <CopyFileToFolders Include="sprite02.tga" />

@@ -219,6 +219,9 @@
     <ClCompile Include="textureclass.cpp">
       <Filter>Fichiers sources\System</Filter>
     </ClCompile>
+    <ClCompile Include="frustum.cpp">
+      <Filter>Fichiers sources\System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="systemclass.h">
@@ -383,13 +386,13 @@
     <ClInclude Include="object.h">
       <Filter>Fichiers d%27en-tête\System</Filter>
     </ClInclude>
+    <ClInclude Include="frustum.h">
+      <Filter>Fichiers d%27en-tête\System</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="KhaoticIcon.ico">
       <Filter>Assets</Filter>
-    </Image>
-    <Image Include="assets\Texture\EmptyTexture.png">
-      <Filter>Assets\Texture</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>
@@ -619,6 +622,9 @@
     </CopyFileToFolders>
     <CopyFileToFolders Include="assets\Model\OBJ\plane.obj">
       <Filter>Assets\Model\OBJ</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="assets\Texture\EmptyTexture.png">
+      <Filter>Assets\Texture</Filter>
     </CopyFileToFolders>
   </ItemGroup>
 </Project>

@@ -13,6 +13,7 @@ Object::Object() : ModelClass()
 	m_mass = NULL;
 	m_isGrounded = false;
 	m_id = NULL;
+	m_boundingRadius = 1.0f;
 }
 
 Object::~Object()
@@ -233,4 +234,9 @@ bool Object::IsPhysicsEnabled() const
 void Object::SetPhysicsEnabled(bool state)
 {
 	m_isPhysicsEnabled = state;
+}
+
+float Object::GetBoundingRadius() const
+{
+	return m_boundingRadius;
 }

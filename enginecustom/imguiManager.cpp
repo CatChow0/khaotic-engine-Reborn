@@ -435,5 +435,12 @@ void imguiManager::WidgetEngineSettingsWindow(ApplicationClass* app)
 		app->SetVsync(vsync);
 	}
 
+	// float input for frustum tolerance
+	float frustumTolerance = app->GetFrustumTolerance();
+	if (ImGui::DragFloat("Frustum Tolerance", &frustumTolerance, 0.1f, 0.0f, 100.0f))
+	{
+		app->SetFrustumTolerance(frustumTolerance);
+	}
+
 	ImGui::End();
 }

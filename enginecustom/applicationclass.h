@@ -29,6 +29,7 @@
 #include "translateshaderclass.h"
 #include "reflectionshaderclass.h"
 #include "physics.h"
+#include "frustum.h"
 
 #include <WICTextureLoader.h>
 #include <comdef.h> // Pour _com_error
@@ -104,6 +105,19 @@ public:
 
 	Physics* GetPhysics() const { return m_Physics; };
 
+	// ----------------------------------- //
+	// ------------- Frustum ------------- //
+	// ----------------------------------- //
+
+	Frustum GetFrustum() const { return m_FrustumCulling; };
+	void SetFrustum(Frustum frustum) { m_FrustumCulling = frustum; };
+
+	void ConstructFrustum();
+	int GetRenderCount() const { return m_renderCount; };
+	void SetRenderCount(int renderCount) { m_renderCount = renderCount; };
+	float GetFrustumTolerance() const { return m_FrustumCullingTolerance; };
+	void SetFrustumTolerance(float frustumTolerance) { m_FrustumCullingTolerance = frustumTolerance; };
+
 private:
 	bool Render(float, float, float, float, float);
 	bool RenderPhysics(float x, float y, float z);
@@ -114,6 +128,7 @@ private:
 	bool RenderRefractionToTexture();
 	bool RenderReflectionToTexture();
 	bool RenderPass(const std::vector<std::reference_wrapper<std::vector<Object*>>>& RenderQueues, XMFLOAT4* diffuse, XMFLOAT4* position, XMFLOAT4* ambient, XMMATRIX view, XMMATRIX projection);
+
 
 private :
 
@@ -140,7 +155,6 @@ private :
 	int m_screenWidth, m_screenHeight;
 	CameraClass* m_Camera;
 	PositionClass* m_Position;
-	FrustumClass* m_Frustum;
 
 	// ------------------------------------ //
 	// ------------- OBJECTS -------------- //
@@ -204,6 +218,14 @@ private :
 	Physics* m_Physics;
 	float m_gravity;
 	XMVECTOR m_previousPosition;
+
+	// ------------------------------------------------- //
+	// ------------------- Frustum --------------------- //
+	// ------------------------------------------------- //
+
+	Frustum m_FrustumCulling;
+	int m_renderCount;
+	float m_FrustumCullingTolerance = 5.f;
 };
 
 #endif

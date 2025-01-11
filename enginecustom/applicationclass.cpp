@@ -17,7 +17,6 @@ ApplicationClass::ApplicationClass() : m_ShouldQuit(false)
 	m_RenderCountString = 0;
 	m_ModelList = 0;
 	m_Position = 0;
-	m_Frustum = 0;
 	m_DisplayPlane = 0;
 	m_BathModel = 0;
 	m_WaterModel = 0;
@@ -382,9 +381,6 @@ bool ApplicationClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 		// Create the position class object.
 		m_Position = new PositionClass;
 
-		// Create the frustum class object.
-		m_Frustum = new FrustumClass;
-
 		// Create and initialize the fps object.
 		m_Fps = new FpsClass();
 
@@ -470,17 +466,6 @@ void ApplicationClass::Shutdown()
 	{
 		delete m_Physics;
 		m_Physics = 0;
-	}
-
-	// Release the frustum class object.
-	if (m_Frustum)
-	{
-		Logger::Get().Log("Releasing the frustum class object", __FILE__, __LINE__, Logger::LogLevel::Shutdown);
-
-		delete m_Frustum;
-		m_Frustum = 0;
-
-		Logger::Get().Log("Frustum class object released", __FILE__, __LINE__, Logger::LogLevel::Shutdown);
 	}
 
 	// Release the display plane object.
@@ -1087,6 +1072,15 @@ bool ApplicationClass::Render(float rotation, float x, float y, float z, float t
 		return false;
 	}
 
+	// Update the render count text.
+	result = UpdateRenderCountString(GetRenderCount());
+	if (!result)
+	{
+		Logger::Get().Log("Could not update the render count string", __FILE__, __LINE__, Logger::LogLevel::Error);
+		return false;
+	}
+
+
 	// Translate to where the bath model will be rendered.
 	worldMatrix = XMMatrixTranslation(0.0f, -10.0f, 0.0f);
 
@@ -1161,57 +1155,6 @@ bool ApplicationClass::Render(float rotation, float x, float y, float z, float t
 	if (!result)
 	{
 		Logger::Get().Log("Could not render the display plane using the texture shader", __FILE__, __LINE__, Logger::LogLevel::Error);
-		return false;
-	}
-
-	// Construct the frustum.
-	m_Frustum->ConstructFrustum(viewMatrix, projectionMatrix, SCREEN_DEPTH);
-
-	// Get the number of models that will be rendered.
-	modelCount = m_ModelList->GetModelCount();
-
-	// Initialize the count of models that have been rendered.
-	renderCount = 0;
-
-	// Go through all the models and render them only if they can be seen by the camera view.
-	for (i = 0; i < modelCount; i++)
-	{
-		// Get the position and color of the sphere model at this index.
-		m_ModelList->GetData(i, positionX, positionY, positionZ);
-
-		// Set the radius of the sphere to 1.0 since this is already known.
-		radius = 1.0f;
-
-		// Check if the sphere model is in the view frustum.
-		renderModel = m_Frustum->CheckSphere(positionX, positionY, positionZ, radius);
-
-		// If it can be seen then render it, if not skip this model and check the next sphere.
-		if (renderModel)
-		{
-			// Move the model to the location it should be rendered at.
-			worldMatrix = XMMatrixTranslation(positionX, positionY, positionZ);
-
-			// Render the model using the light shader.
-			m_Model->Render(m_Direct3D->GetDeviceContext());
-
-			result = m_ShaderManager->RenderlightShader(m_Direct3D->GetDeviceContext(), m_Model->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix, m_Model->GetTexture(0),
-				diffuseColor, lightPosition, ambientColor);
-			if (!result)
-			{
-				Logger::Get().Log("Could not render the model using the light shader", __FILE__, __LINE__, Logger::LogLevel::Error);
-				return false;
-			}
-
-			// Since this model was rendered then increase the count for this frame.
-			renderCount++;
-		}
-	}
-
-	// Update the render count text.
-	result = UpdateRenderCountString(renderCount);
-	if (!result)
-	{
-		Logger::Get().Log("Could not update the render count string", __FILE__, __LINE__, Logger::LogLevel::Error);
 		return false;
 	}
 
@@ -1560,9 +1503,9 @@ void ApplicationClass::AddKobject(WCHAR* filepath)
 
 	// Liste des fichiers de texture
 	std::vector<std::wstring> kobjTexture = {
-		L"assets/Texture/Bricks2K.png"
+		L"assets/Texture/Bricks2K.png",
+		L"assets/Texture/EmptyTexture.png"
 	};
-
 
 	textures.clear();
 	for (const auto& textureFilename : kobjTexture)
@@ -1917,6 +1860,11 @@ bool ApplicationClass::RenderPass(const std::vector<std::reference_wrapper<std::
 	XMMATRIX worldMatrix, scaleMatrix, rotateMatrix, translateMatrix, srMatrix;
 	bool result;
 
+	int renderCount = 0;
+
+	ConstructFrustum();	
+
+
 	for (const auto& RenderQueue : RenderQueues)
 	{
 		for (auto& object : RenderQueue.get())
@@ -1926,6 +1874,21 @@ bool ApplicationClass::RenderPass(const std::vector<std::reference_wrapper<std::
 				Logger::Get().Log("Object is null", __FILE__, __LINE__, Logger::LogLevel::Error);
 				return false;
 			}
+
+			XMVECTOR objposition = object->GetPosition();
+			float x = XMVectorGetX(objposition);
+			float y = XMVectorGetY(objposition);
+			float z = XMVectorGetZ(objposition);
+			float radius = object->GetBoundingRadius();
+
+			// Vérifie si l'objet est dans le frustum
+			if (!m_FrustumCulling.CheckCube(x, y, z, radius, GetFrustumTolerance()))
+			{
+				
+				continue;
+			}
+
+			renderCount++;
 
 			scaleMatrix = object->GetScaleMatrix();
 			rotateMatrix = object->GetRotateMatrix();
@@ -1981,5 +1944,16 @@ bool ApplicationClass::RenderPass(const std::vector<std::reference_wrapper<std::
 		}
 	}
 
+	SetRenderCount(renderCount);
+
 	return true;
+}
+
+void ApplicationClass::ConstructFrustum()
+{
+	XMMATRIX projectionMatrix = m_Direct3D->GetProjectionMatrix();
+	XMMATRIX viewMatrix;
+	m_Camera->GetViewMatrix(viewMatrix);
+
+	m_FrustumCulling.ConstructFrustum(SCREEN_DEPTH, projectionMatrix, viewMatrix);
 }

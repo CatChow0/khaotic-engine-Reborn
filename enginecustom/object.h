@@ -70,6 +70,8 @@ public:
 	ShaderType GetActiveShader() const { return m_activeShader; };
 	void SetActiveShader(ShaderType activeShader) { m_activeShader = activeShader; };
 
+	float GetBoundingRadius() const;
+
 public :
 	bool m_demoSpinning = false;
 	XMVECTOR m_previousPosition;
@@ -91,4 +93,6 @@ private:
 	std::string m_name;
 
 	ShaderType m_activeShader = LIGHTING;
+
+	float m_boundingRadius;
 };
