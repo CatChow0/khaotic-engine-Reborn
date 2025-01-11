@@ -27,12 +27,6 @@ ApplicationClass::ApplicationClass() : m_ShouldQuit(false)
 	m_Physics = 0;
 }
 
-
-ApplicationClass::ApplicationClass(const ApplicationClass& other)
-{
-}
-
-
 ApplicationClass::~ApplicationClass()
 {
 }
@@ -725,7 +719,7 @@ bool ApplicationClass::Frame(InputClass* Input)
 	m_Camera->SetRotation(rotationX, rotationY, 0.0f);
 	m_Camera->Render();
 
-	// Render the graphics scene.
+	// Render the static graphics scene.
 	result = Render(rotation, x, y, z, textureTranslation);
 	if (!result)
 	{
@@ -851,7 +845,7 @@ bool ApplicationClass::Frame(InputClass* Input)
 			position = position + object->GetVelocity() * frameTime;
 			object->SetPosition(position);
 			
-			m_Physics->ApplyGravity(object, 1.0f, frameTime);
+			m_Physics->ApplyGravity(object, 1.0f);
 
 			// Check if the object has fallen below a certain position
 			if (XMVectorGetY(object->GetPosition()) < -30.0f)
@@ -1074,134 +1068,15 @@ bool ApplicationClass::Render(float rotation, float x, float y, float z, float t
 	result = m_ShaderManager->RenderlightShader(m_Direct3D->GetDeviceContext(), m_Model->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix, m_Model->GetTexture(0),
 		diffuseColor, lightPosition, ambientColor);
 
-	for (auto cube : m_cubes)
+
+	// -------------------------------------------------------- //
+	// ------------ Render the object in the queue ------------ //
+	// -------------------------------------------------------- //
+	result = RenderPass(m_terrainChunk, diffuseColor, lightPosition, ambientColor, viewMatrix, projectionMatrix);
+	if (!result)
 	{
-
-		scaleMatrix = cube->GetScaleMatrix();
-
-		if (cube->m_demoSpinning)
-			rotateMatrix = XMMatrixRotationY(rotation);
-		else
-		{
-			rotateMatrix = cube->GetRotateMatrix();
-		}
-
-
-		translateMatrix = cube->GetTranslateMatrix();
-		srMatrix = XMMatrixMultiply(scaleMatrix, rotateMatrix);
-		worldMatrix = XMMatrixMultiply(srMatrix, translateMatrix);
-
-		cube->Render(m_Direct3D->GetDeviceContext());
-
-
-		if (!m_enableCelShading) {
-			result = m_ShaderManager->RenderlightShader(m_Direct3D->GetDeviceContext(), cube->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix, cube->GetTexture(0),
-				diffuseColor, lightPosition, ambientColor);
-			if (!result)
-			{
-				Logger::Get().Log("Could not render the cube model using the light shader", __FILE__, __LINE__, Logger::LogLevel::Error);
-				return false;
-			}
-		}
-
-		// Render cel shading globally to the scene using the cel shader if the checkbox is checked.
-		if (m_enableCelShading) {
-			result = m_ShaderManager->RenderCelShadingShader(m_Direct3D->GetDeviceContext(), cube->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix, cube->GetTexture(0),
-				m_Lights[0]->GetDirection(), m_Lights[0]->GetDiffuseColor(), TrueLightPosition);
-			if (!result)
-			{
-				Logger::Get().Log("Could not render the model using the cel shader", __FILE__, __LINE__, Logger::LogLevel::Error);
-				return false;
-			}
-		}
-
-	}
-
-	for (auto& object : m_object)
-	{
-		scaleMatrix = object->GetScaleMatrix();
-		if (object->m_demoSpinning)
-			rotateMatrix = XMMatrixRotationY(rotation);
-		else
-		{
-			rotateMatrix = object->GetRotateMatrix();
-		}
-		translateMatrix = object->GetTranslateMatrix();
-		srMatrix = XMMatrixMultiply(scaleMatrix, rotateMatrix);
-		worldMatrix = XMMatrixMultiply(srMatrix, translateMatrix);
-		
-
-		object->Render(m_Direct3D->GetDeviceContext());
-
-		if (!m_enableCelShading) {
-
-			// check if m_object is null or not
-			if (object == nullptr) {
-
-				Logger::Get().Log("Object is null", __FILE__, __LINE__, Logger::LogLevel::Error);
-				return false;
-			}
-
-			result = m_ShaderManager->RenderlightShader(m_Direct3D->GetDeviceContext(), object->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix, 
-				object->GetTexture(0), diffuseColor, lightPosition, ambientColor);
-			if (!result)
-			{
-				Logger::Get().Log("Could not render the object model using the light shader", __FILE__, __LINE__, Logger::LogLevel::Error);
-				return false;
-			}
-		}
-
-		// Render cel shading globally to the scene using the cel shader if the checkbox is checked.
-		if (m_enableCelShading) {
-			result = m_ShaderManager->RenderCelShadingShader(m_Direct3D->GetDeviceContext(), object->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix, object->GetTexture(0),
-				m_Lights[0]->GetDirection(), m_Lights[0]->GetDiffuseColor(), TrueLightPosition);
-			if (!result)
-			{
-				Logger::Get().Log("Could not render the model using the cel shader", __FILE__, __LINE__, Logger::LogLevel::Error);
-				return false;
-			}
-		}
-	}
-
-	// Render terrain
-	for (auto& chunk : m_terrainChunk)
-	{
-
-		scaleMatrix = chunk->GetScaleMatrix();
-		rotateMatrix = chunk->GetRotateMatrix();
-		translateMatrix = chunk->GetTranslateMatrix();
-
-		srMatrix = XMMatrixMultiply(scaleMatrix, rotateMatrix);
-		worldMatrix = XMMatrixMultiply(srMatrix, translateMatrix);
-
-		chunk->Render(m_Direct3D->GetDeviceContext());
-		if (!m_enableCelShading) {
-			if (chunk->GetTexture(0) == nullptr)
-			{
-
-				Logger::Get().Log("Could not render the terrain model using the light shader, texture is null", __FILE__, __LINE__, Logger::LogLevel::Error);
-				return false;
-			}
-			result = m_ShaderManager->RenderlightShader(m_Direct3D->GetDeviceContext(), chunk->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix, chunk->GetTexture(0), diffuseColor, lightPosition, ambientColor );
-			
-			if (!result)
-			{
-				Logger::Get().Log("Could not render the terrain model using the light shader", __FILE__, __LINE__, Logger::LogLevel::Error);
-				return false;
-			}
-		}
-		
-
-		// Render cel shading globally to the scene using the cel shader if the checkbox is checked.
-		if (m_enableCelShading) {
-			result = m_ShaderManager->RenderCelShadingShader(m_Direct3D->GetDeviceContext(), chunk->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix, chunk->GetTexture(0),
-				m_Lights[0]->GetDirection(), m_Lights[0]->GetDiffuseColor(), TrueLightPosition);
-			if (!result)
-			{
-				Logger::Get().Log("Could not render the model using the cel shader", __FILE__, __LINE__, Logger::LogLevel::Error);
-				return false;
-			}
-		}
+		Logger::Get().Log("Could not render the model using any shader", __FILE__, __LINE__, Logger::LogLevel::Error);
+		return false;
 	}
 
 	// Translate to where the bath model will be rendered.
@@ -1720,6 +1595,7 @@ void ApplicationClass::AddKobject(WCHAR* filepath)
 
 	m_object.push_back(newObject);
 
+
 	// Vérifiez que l'objet a bien reçu les textures
 	if (newObject->GetTexture(0) == nullptr)
 	{
@@ -2026,4 +1902,83 @@ void ApplicationClass::SetScreenWidth(int width)
 	// log the new screen width
 	Logger::Get().Log("Setting screen width to " + std::to_string(width), __FILE__, __LINE__);
 	m_screenWidth = width;
+}
+
+bool ApplicationClass::RenderPass(std::vector<Object*> RenderQueue, XMFLOAT4* diffuse, XMFLOAT4* position, XMFLOAT4* ambient, XMMATRIX view, XMMATRIX projection)
+{
+	XMMATRIX worldMatrix, scaleMatrix, rotateMatrix, translateMatrix, srMatrix;
+	bool result;
+
+	for (auto& object : RenderQueue)
+	{
+
+		if (object == nullptr)
+		{
+			Logger::Get().Log("Object is null", __FILE__, __LINE__, Logger::LogLevel::Error);
+			return false;
+		}
+
+		scaleMatrix = object->GetScaleMatrix();
+		rotateMatrix = object->GetRotateMatrix();
+		translateMatrix = object->GetTranslateMatrix();
+
+		srMatrix = XMMatrixMultiply(scaleMatrix, rotateMatrix);
+		worldMatrix = XMMatrixMultiply(srMatrix, translateMatrix);
+
+		object->Render(m_Direct3D->GetDeviceContext());
+
+		// Render cel shading.
+		if (object->GetCelShading()) {
+			result = m_ShaderManager->RenderCelShadingShader(m_Direct3D->GetDeviceContext(), object->GetIndexCount(), worldMatrix, view, projection, object->GetTexture(0),
+				m_Lights[0]->GetDirection(), m_Lights[0]->GetDiffuseColor(), TrueLightPosition);
+			if (!result)
+			{
+				Logger::Get().Log("Could not render the model using the cel shader", __FILE__, __LINE__, Logger::LogLevel::Error);
+				return false;
+			}
+			
+			continue;
+		}
+
+		// Render normal mapping.
+		if (object->GetNormalMappingEnabled()) {
+			
+			result = m_ShaderManager->RenderNormalMapShader(m_Direct3D->GetDeviceContext(), object->GetIndexCount(), worldMatrix, view, projection, object->GetTexture(0), object->GetTexture(1), m_Lights[0]->GetDirection(), m_Lights[0]->GetDiffuseColor());
+			
+			if (!result)
+			{
+				Logger::Get().Log("Could not render the model using the normal map shader", __FILE__, __LINE__, Logger::LogLevel::Error);
+				return false;
+			}
+
+			continue;
+		}
+
+		// Render Specular mapping.
+		if (object->GetSpecularMappingEnabled()) {
+			result = m_ShaderManager->RenderSpecMapShader(m_Direct3D->GetDeviceContext(), object->GetIndexCount(), worldMatrix, view, projection, object->GetTexture(0), object->GetTexture(1), object->GetTexture(2), m_Lights[0]->GetDirection(), m_Lights[0]->GetDiffuseColor(), m_Camera->GetPosition(), m_Lights[0]->GetSpecularColor(), m_Lights[0]->GetSpecularPower());
+			if (!result)
+			{
+				Logger::Get().Log("Could not render the model using the specular map shader", __FILE__, __LINE__, Logger::LogLevel::Error);
+				return false;
+			}
+
+			continue;
+		}
+
+
+		// By default, render the object using the light shader.
+		result = m_ShaderManager->RenderlightShader(m_Direct3D->GetDeviceContext(), object->GetIndexCount(), worldMatrix, view, projection,
+			object->GetTexture(0) ,diffuse, position, ambient);
+		
+		if (!result)
+		{
+			Logger::Get().Log("Could not render the object model using the light shader", __FILE__, __LINE__, Logger::LogLevel::Error);
+			return false;
+		}
+
+		continue;
+	}
+
+	return true;
 }

@@ -102,14 +102,18 @@ public:
 	bool IsWindowed() const;
 	void SetWindowed(bool windowed);
 
+	Physics* GetPhysics() const { return m_Physics; };
+
 private:
 	bool Render(float, float, float, float, float);
+	bool RenderPhysics(float x, float y, float z);
 	bool UpdateMouseStrings(int, int, bool);
 	bool UpdateFps();
 	bool UpdateRenderCountString(int);
 	bool RenderSceneToTexture(float);
 	bool RenderRefractionToTexture();
 	bool RenderReflectionToTexture();
+	bool RenderPass(std::vector<Object*> RenderQueue, XMFLOAT4* diffuse,XMFLOAT4* position, XMFLOAT4* ambient, XMMATRIX view, XMMATRIX proijection);
 
 private :
 

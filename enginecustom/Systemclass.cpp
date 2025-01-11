@@ -9,11 +9,13 @@ SystemClass::SystemClass()
 	m_Input = 0;
 	m_Application = 0;
 	m_imguiManager = 0;
+	m_applicationName = 0;
+	m_hinstance = 0;
+	m_hwnd = 0;
+	m_initialWindowWidth = 0;
+	m_initialWindowHeight = 0;
+	m_isDirect3DInitialized = false;
 	
-}
-
-SystemClass::SystemClass(const SystemClass& other)
-{
 }
 
 SystemClass::~SystemClass()
@@ -22,21 +24,13 @@ SystemClass::~SystemClass()
 
 bool SystemClass::Initialize()
 {
-	int screenWidth, screenHeight;
+	int screenHeight, screenWidth = 0;
 	bool result;
 
 	Logger::Get().Log("Initializing system class", __FILE__, __LINE__, Logger::LogLevel::Initialize);
 
 	try
 	{
-		// Initialize the width and height of the screen to zero before sending the variables into the function.
-		screenWidth = 0;
-		screenHeight = 0;
-
-		m_initialWindowWidth = 0;
-		m_initialWindowHeight = 0;
-		m_isDirect3DInitialized = false;
-
 		// Initialize the windows api.
 		InitializeWindows(screenWidth, screenHeight);
 
@@ -149,6 +143,10 @@ void SystemClass::Run()
 
 	// Loop until there is a quit message from the window or the user.
 	done = false;
+
+	auto fixedUpdateInterval = std::chrono::milliseconds(16);
+	auto m_lastFixedUpdateTime = std::chrono::steady_clock::now();
+
 	while (!done)
 	{
 		// Handle the windows messages.
@@ -179,6 +177,13 @@ void SystemClass::Run()
 			{
 				Logger::Get().Log("Failed to process frame", __FILE__, __LINE__, Logger::LogLevel::Error);
 				done = true;
+			}
+
+			auto now = std::chrono::steady_clock::now();
+			if (now - m_lastFixedUpdateTime >= fixedUpdateInterval)
+			{
+				FixedUpdate();
+				m_lastFixedUpdateTime = now;
 			}
 		}
 
@@ -266,6 +271,7 @@ LRESULT CALLBACK SystemClass::MessageHandler(HWND hwnd, UINT umsg, WPARAM wparam
 				m_initialWindowWidth = newWidth;
 				m_initialWindowHeight = newHeight;
 			}
+			return 0;
 		}
 		case WM_ENTERSIZEMOVE:
 		{
@@ -470,4 +476,9 @@ void SystemClass::SendPath(wchar_t* path, std::filesystem::path WFolder)
 {
 	m_Application->SetPath(path);
 	m_Application->SetWFolder(WFolder);
+}
+
+void SystemClass::FixedUpdate()
+{
+	m_Application->GetPhysics()->Update();
 }

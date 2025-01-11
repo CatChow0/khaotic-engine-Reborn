@@ -10,6 +10,7 @@
 #include "imguiManager.h"
 #include <mutex>
 #include "resources.h"
+#include <chrono>
 
 class SystemClass
 {
@@ -21,6 +22,7 @@ public:
 	bool Initialize();
 	void Shutdown();
 	void Run();
+	void FixedUpdate();
 
 	LRESULT CALLBACK MessageHandler(HWND, UINT, WPARAM, LPARAM);
 

@@ -38,6 +38,9 @@ public:
 	float GetMass() const;
 	void SetGrounded(bool);
 	bool IsGrounded() const;
+	bool IsPhysicsEnabled() const;
+	void SetPhysicsEnabled(bool state);
+
 
 	void UpdateWorldMatrix();
 	void UpdateSRMatrix();
@@ -53,6 +56,20 @@ public:
 	int GetId() const;
 
 	bool LoadTexture(ID3D11Device* device, ID3D11DeviceContext* deviceContext, const std::wstring& filename);
+
+	// Setters and getters for the shader to use
+	void SetCelShading(bool state);
+	bool GetCelShading() const;
+	void SetLightingEnabled(bool state);
+	bool GetLightingEnabled() const;
+	void SetNormalMappingEnabled(bool state);
+	bool GetNormalMappingEnabled() const;
+	void SetSpecularMappingEnabled(bool state);
+	bool GetSpecularMappingEnabled() const;
+	void SetReflectionEnabled(bool state);
+	bool GetReflectionEnabled() const;
+	void SetRefractionEnabled(bool state);
+	bool GetRefractionEnabled() const;
 
 public :
 	bool m_demoSpinning = false;
@@ -70,6 +87,15 @@ private:
 	XMVECTOR m_acceleration;
 	float m_mass;
 	bool m_isGrounded;
+	bool m_isPhysicsEnabled;
 
 	std::string m_name;
+
+	// Shader to use for rendering
+	bool isCelShading = false;
+	bool isLightingEnabled = true;
+	bool isNormalMappingEnabled = false;
+	bool isSpecularMappingEnabled = false;
+	bool isReflectionEnabled = false;
+	bool isRefractionEnabled = false;
 };

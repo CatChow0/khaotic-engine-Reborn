@@ -225,3 +225,72 @@ int Object::GetId() const
 	return m_id;
 }
 
+bool Object::IsPhysicsEnabled() const
+{
+	return m_isPhysicsEnabled;
+}
+
+void Object::SetPhysicsEnabled(bool state)
+{
+	m_isPhysicsEnabled = state;
+}
+
+void Object::SetCelShading(bool state)
+{
+	isCelShading = state;
+}
+
+bool Object::GetCelShading() const
+{
+	return isCelShading;
+}
+
+void Object::SetLightingEnabled(bool state)
+{
+	isLightingEnabled = state;
+}
+
+bool Object::GetLightingEnabled() const
+{
+	return isLightingEnabled;
+}
+
+void Object::SetNormalMappingEnabled(bool state)
+{
+	isNormalMappingEnabled = state;
+}
+
+bool Object::GetNormalMappingEnabled() const
+{
+	return isNormalMappingEnabled;
+}
+
+void Object::SetSpecularMappingEnabled(bool state)
+{
+	isSpecularMappingEnabled = state;
+}
+
+bool Object::GetSpecularMappingEnabled() const
+{
+	return isSpecularMappingEnabled;
+}
+
+void Object::SetReflectionEnabled(bool state)
+{
+	isReflectionEnabled = state;
+}
+
+bool Object::GetReflectionEnabled() const
+{
+	return isReflectionEnabled;
+}
+
+void Object::SetRefractionEnabled(bool state)
+{
+	isRefractionEnabled = state;
+}
+
+bool Object::GetRefractionEnabled() const
+{
+	return isRefractionEnabled;
+}

@@ -28,7 +28,7 @@ void Physics::SetGravity(XMVECTOR gravity)
 }
 
 // Apply gravity to an object
-void Physics::ApplyGravity(Object* object, float dragValue, float frameTime)
+void Physics::ApplyGravity(Object* object, float dragValue)
 {
     if (object == nullptr) // Verify if the object is not null
     {
@@ -53,7 +53,7 @@ void Physics::ApplyGravity(Object* object, float dragValue, float frameTime)
         XMVECTOR velocity = object->GetVelocity();
 
         // Update the velocity with the object's acceleration
-        velocity += object->GetAcceleration() * frameTime;
+        velocity += object->GetAcceleration();
 
         // Set the new velocity
         object->SetVelocity(velocity);
@@ -175,4 +175,3 @@ bool Physics::SphereCubeOverlap(Object* cube, Object* sphere)
 
     return distance < radius;
 }
-
