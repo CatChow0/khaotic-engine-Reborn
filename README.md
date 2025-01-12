@@ -35,11 +35,22 @@ This **DirectX11** based engine uses **ImGui** with an abstraction layer to enab
 
 **SHADER** :
 
-- Cel Shading
++ Cel Shading (Work In Progress)
 
 **Interface Graphique** :
 
-- Shader Manager
++ Shader Manager
++ Engine Settings
+
+**Texture File** :
+
++ All the format supported by Windows Imaging Component (WIC)
+
+**Optimization** :
+
+- Shader rendering
+- Frustum culling
+- Object rendering
 
 ## Demo :
 
