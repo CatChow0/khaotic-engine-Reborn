@@ -400,6 +400,7 @@ bool ApplicationClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 			return false;
 		}
 
+
 	}
 	catch (const std::exception& e)
 	{
@@ -1884,7 +1885,6 @@ bool ApplicationClass::RenderPass(const std::vector<std::reference_wrapper<std::
 			// Vérifie si l'objet est dans le frustum
 			if (!m_FrustumCulling.CheckCube(x, y, z, radius, GetFrustumTolerance()))
 			{
-				
 				continue;
 			}
 

@@ -106,7 +106,7 @@ public:
 	Physics* GetPhysics() const { return m_Physics; };
 
 	// ----------------------------------- //
-	// ------------- Frustum ------------- //
+	// ------------- Culling ------------- //
 	// ----------------------------------- //
 
 	Frustum GetFrustum() const { return m_FrustumCulling; };
@@ -117,6 +117,7 @@ public:
 	void SetRenderCount(int renderCount) { m_renderCount = renderCount; };
 	float GetFrustumTolerance() const { return m_FrustumCullingTolerance; };
 	void SetFrustumTolerance(float frustumTolerance) { m_FrustumCullingTolerance = frustumTolerance; };
+
 
 private:
 	bool Render(float, float, float, float, float);
@@ -220,7 +221,7 @@ private :
 	XMVECTOR m_previousPosition;
 
 	// ------------------------------------------------- //
-	// ------------------- Frustum --------------------- //
+	// ------------------- Culling --------------------- //
 	// ------------------------------------------------- //
 
 	Frustum m_FrustumCulling;

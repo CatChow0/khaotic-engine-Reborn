@@ -282,7 +282,6 @@ bool InputClass::IsLeftArrowPressed() const
 {
 	if (m_keyboardState[DIK_LEFT] & 0x80)
 	{
-		Logger::Get().Log("Left arrow pressed", __FILE__, __LINE__, Logger::LogLevel::Input);
 		return true;
 	}
 
@@ -294,7 +293,6 @@ bool InputClass::IsRightArrowPressed() const
 {
 	if (m_keyboardState[DIK_RIGHT] & 0x80)
 	{
-		Logger::Get().Log("Right arrow pressed", __FILE__, __LINE__, Logger::LogLevel::Input);
 		return true;
 	}
 
@@ -331,7 +329,6 @@ bool InputClass::IsAPressed() const
 	// Touche A sur QWERTY, Q sur AZERTY
 	if (m_keyboardState[DIK_A] & 0x80)
 	{
-		Logger::Get().Log("A pressed", __FILE__, __LINE__, Logger::LogLevel::Input);
 		return true;
 	}
 
@@ -342,7 +339,6 @@ bool InputClass::IsDPressed() const
 {
 	if (m_keyboardState[DIK_D] & 0x80)
 	{
-		Logger::Get().Log("D pressed", __FILE__, __LINE__, Logger::LogLevel::Input);
 		return true;
 	}
 
@@ -354,7 +350,6 @@ bool InputClass::IsWPressed() const
 	// Touche W sur QWERTY, Z sur AZERTY
 	if (m_keyboardState[DIK_W] & 0x80)
 	{
-		Logger::Get().Log("W pressed", __FILE__, __LINE__, Logger::LogLevel::Input);
 		return true;
 	}
 
@@ -365,7 +360,6 @@ bool InputClass::IsSPressed() const
 {
 	if (m_keyboardState[DIK_S] & 0x80)
 	{
-		Logger::Get().Log("S pressed", __FILE__, __LINE__, Logger::LogLevel::Input);
 		return true;
 	}
 
@@ -377,7 +371,6 @@ bool InputClass::IsQPressed() const
 	// Touche Q sur QWERTY, A sur AZERTY
 	if (m_keyboardState[DIK_Q] & 0x80)
 	{
-		Logger::Get().Log("Q pressed", __FILE__, __LINE__, Logger::LogLevel::Input);
 		return true;
 	}
 
@@ -388,7 +381,6 @@ bool InputClass::IsEPressed() const
 {
 	if (m_keyboardState[DIK_E] & 0x80)
 	{
-		Logger::Get().Log("E pressed", __FILE__, __LINE__, Logger::LogLevel::Input);
 		return true;
 	}
 
@@ -407,7 +399,6 @@ bool InputClass::IsLeftMousePressed() const
 	// Check the left mouse button state.
 	if (m_mouseState.rgbButtons[0] & 0x80)
 	{
-		Logger::Get().Log("Left mouse button pressed", __FILE__, __LINE__, Logger::LogLevel::Input);
 		return true;
 	}
 
@@ -419,7 +410,6 @@ bool InputClass::IsRightMousePressed() const
 	// Check the left mouse button state.
 	if (m_mouseState.rgbButtons[1] & 0x80)
 	{
-		Logger::Get().Log("Right mouse button pressed", __FILE__, __LINE__, Logger::LogLevel::Input);
 		return true;
 	}
 
